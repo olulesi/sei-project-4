@@ -22,7 +22,6 @@ function Register() {
   const handleSubmit = async event => {
     formdata.username = formdata.email
     event.preventDefault()
-    console.log(formdata)
     try {
       console.log(formdata)
       await registerUser(formdata)
@@ -62,6 +61,8 @@ function Register() {
                   type="text" 
                   placeholder="Full Name" />
               </div>
+              {/* {errors.full_name && <p className="help is-danger">Full Name is Required</p>
+              } */}
             </div>
 
             <div className="field">
@@ -75,6 +76,8 @@ function Register() {
                   type="email" 
                   placeholder="Email" />
               </div>
+              {/* {errors.email && <p className="help is-danger">Email is Required</p>
+              } */}
             </div>
 
             <div className="field">
@@ -88,6 +91,8 @@ function Register() {
                   type="password" 
                   placeholder="Password" />
               </div>
+              {/* {errors.password && <p className="help is-danger">Password is Required</p>
+              } */}
             </div>
 
             <div className="field">
@@ -102,6 +107,7 @@ function Register() {
                   name="passwordConfirmation"
                 />
               </div>
+              
             </div>
 
             <div className="field">
