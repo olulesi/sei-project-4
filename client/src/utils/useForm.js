@@ -5,18 +5,17 @@ function useForm(initialState) {
   const [errors, setErrors] = React.useState(initialState)
   const handleChange = event => {
     const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
-    const nextState = { ...formdata, [event.target.name]: value }
-    const nextErrorState = { ...errors, [event.target.name]: '' }
-    setFormdata(nextState)
-    setErrors(nextErrorState)
+    setFormdata({ ...formdata, [event.target.name]: value })
+    setErrors({ ...errors, [event.target.name]: '' })
   }
 
   return {
     formdata,
     setFormdata,
     errors,
-    handleChange,
-    setErrors
+    setErrors,
+    handleChange
   }
 }
+
 export default useForm

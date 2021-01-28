@@ -1,23 +1,29 @@
 import React from 'react'
+import { Link, useHistory } from 'react-router-dom'
+
 import useForm from '../../utils/useForm'
 import { registerUser } from '../lib/api'
-import { Link, useHistory } from 'react-router-dom'
+import unpackErrors from '../../utils/unpackErrors'
+import useErrorAnimation from '../../utils/useErrorAnimation'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser, faEnvelope, faLock, faExclamationTriangle, faCheck } from '@fortawesome/free-solid-svg-icons'
+
+const genericErrorMessage = 'This field may not be blank.'
 
 function Register() {
 
-  const history = useHistory()
-  const { formdata, errors, handleChange, setErrors } = useForm({
+  const { formdata, errors, setErrors, handleChange } = useForm({
     username: '',
-    full_name: '',
+    fullName: '',
     email: '',
     password: '',
     passwordConfirmation: '',
     role: '',
     avatar: ''
   })
-
-  // console.log(errors)
-  // console.log(setErrors)
+  const { hasErrorAnimationClass, errorAnimation } = useErrorAnimation()
+  const history = useHistory()
 
   const handleSubmit = async event => {
     formdata.username = formdata.email
@@ -25,115 +31,165 @@ function Register() {
     try {
       console.log(formdata)
       await registerUser(formdata)
-      history.push('/login')
+      history.push('/login/')
     } catch (err) {
-      setErrors(err.response.data.errors)
+      console.log(event.target.parentNode)
+      setErrors(unpackErrors(err.response.data))
+      errorAnimation()
     }
   }
+
+  const passwordConfirmationIsValid = formdata.password === formdata.passwordConfirmation &&
+    formdata.password.length >= 8 && !errors.password
   
+  console.log(errors)
 
   return (
-
     <>
-      <section className={`register-form-container ${errors ? 'register-error-form-container ' : ''}`}>
+      <section className={`register-form-container ${hasErrorAnimationClass ? 'error-animation' : ''}`}>
         <h1>Sign Up</h1>
-        <div className="form-box ui form error">
+        <div className='form-box ui form error'>
           <form onSubmit={handleSubmit}>
-            <div className="field">
-              <label className="label">Upload Avater</label>
-              <div className="control">
+            <div className='field'>
+              <label className='label'>Avatar</label>
+              <div className='control'>
                 <input
                   onChange={handleChange}
-                  type="file" 
-                  className="input"
-                  name="avatar" 
-                  value={formdata.avatar}/>
+                  type='file' 
+                  className='input'
+                  name='avatar' 
+                  value={formdata.avatar}
+                />
               </div>
             </div>
-            <div className="field">
-              <label className="label">Full Name</label>
-              <div className="control">
+            <div className='field'>
+              <label className='label'>Full Name</label>
+              <div className='control has-icons-left has-icons-right'>
                 <input 
                   onChange={handleChange}
-                  value={formdata.full_name}
-                  className="input"
-                  name="full_name" 
-                  type="text" 
-                  placeholder="Full Name" />
+                  value={formdata.fullName}
+                  className={`input ${errors.fullName ? 'is-danger' : ''}`}
+                  name='fullName' 
+                  type='text' 
+                  placeholder='Full Name'
+                />
+                <span className='icon is-small is-left'>
+                  <FontAwesomeIcon icon={faUser} />
+                </span>
+                {errors.fullName &&
+                  <span className='icon is-small is-right'>
+                    <FontAwesomeIcon icon={faExclamationTriangle} className='danger-color'/>
+                  </span>
+                }
               </div>
-              {/* {errors.full_name && <p className="help is-danger">Full Name is Required</p>
-              } */}
+              {errors.fullName && <p className='help is-danger'>Full Name is Required</p>}
             </div>
 
-            <div className="field">
-              <label className="label">Email</label>
-              <div className="control">
+            <div className='field'>
+              <label className='label'>Email</label>
+              <div className='control has-icons-left has-icons-right'>
                 <input
                   onChange={handleChange}
                   value={formdata.email} 
-                  className="input"
-                  name="email" 
-                  type="email" 
-                  placeholder="Email" />
+                  className={`input ${errors.email ? 'is-danger' : ''}`}
+                  name='email' 
+                  type='email' 
+                  placeholder='Email'
+                />
+                <span className='icon is-small is-left'>
+                  <FontAwesomeIcon icon={faEnvelope} />
+                </span>
+                {errors.email &&
+                  <span className='icon is-small is-right'>
+                    <FontAwesomeIcon icon={faExclamationTriangle} className='danger-color'/>
+                  </span>
+                }
               </div>
-              {/* {errors.email && <p className="help is-danger">Email is Required</p>
-              } */}
+              {errors.email && <p className='help is-danger'>Email is Required</p>}
             </div>
 
-            <div className="field">
-              <label className="label">Password</label>
-              <div className="control">
+            <div className='field'>
+              <label className='label'>Password</label>
+              <div className='control has-icons-left has-icons-right'>
                 <input 
                   onChange={handleChange}
                   value={formdata.password}
-                  name="password"
-                  className="input" 
-                  type="password" 
-                  placeholder="Password" />
+                  name='password'
+                  className={`input ${errors.password ? 'is-danger' : ''}`}
+                  type='password' 
+                  placeholder='Password'
+                />
+                <span className='icon is-small is-left'>
+                  <FontAwesomeIcon icon={faLock} />
+                </span>
+                {errors.password &&
+                  <span className='icon is-small is-right'>
+                    <FontAwesomeIcon icon={faExclamationTriangle} className='danger-color'/>
+                  </span>
+                }
               </div>
-              {/* {errors.password && <p className="help is-danger">Password is Required</p>
-              } */}
+              {errors.password &&
+                <p className='help is-danger'>
+                  {errors.password === genericErrorMessage ?
+                    'Password is Required'
+                    :
+                    errors.password
+                  }
+                </p>
+              }
             </div>
 
-            <div className="field">
-              <label className="label">Password Confirmation</label>
-              <div className="control">
+            <div className='field'>
+              <label className='label'>Password Confirmation</label>
+              <div className='control has-icons-left has-icons-right'>
                 <input
                   onChange={handleChange}
                   value={formdata.passwordConfirmation}
-                  className="input"
-                  type="password"
-                  placeholder="Password Confirmation"
-                  name="passwordConfirmation"
+                  className={`input 
+                    ${errors.passwordConfirmation ? 'is-danger' : ''} 
+                    ${passwordConfirmationIsValid ? 'is-success' : ''}`
+                  }
+                  type='password'
+                  placeholder='Password Confirmation'
+                  name='passwordConfirmation'
                 />
+                <span className='icon is-small is-left'>
+                  <FontAwesomeIcon icon={faLock} />
+                </span>
+                {errors.passwordConfirmation &&
+                  <span className='icon is-small is-right'>
+                    <FontAwesomeIcon icon={faExclamationTriangle} className='danger-color'/>
+                  </span>
+                }
+                {passwordConfirmationIsValid &&
+                  <span className='icon is-small is-right'>
+                    <FontAwesomeIcon icon={faCheck} className='success-color'/>
+                  </span>
+                }
               </div>
-              
+              {errors.passwordConfirmation &&
+                <p className='help is-danger'>
+                  {errors.passwordConfirmation === genericErrorMessage ?
+                    'Password Confirmation is Required'
+                    :
+                    errors.passwordConfirmation
+                  }
+                </p>
+              }
             </div>
 
-            <div className="field">
-              <label className="label">Role</label>
-              <div className="control">
-                <input
-                  className="input"
-                  onChange={handleChange}
-                  name="role"
-                  value={formdata.role}
-                  type="text" 
-                  placeholder="Student" />
-              </div>
-            </div>
-            <div className="field">
-              <button type="submit" className="button is-success">
+            <div className='field'>
+              <button type='submit' className='button is-success'>
                   Sign Up
               </button>
             </div>
-            <p className="register-link">Already have an account? Login <Link to="/login">here</Link></p>
+
+            <p className='register-link'>Already have an account? Login <Link to='/login'>here</Link></p>
           </form>
         </div>
       </section>
     </>
   )
-
-
 }
+
 export default Register
