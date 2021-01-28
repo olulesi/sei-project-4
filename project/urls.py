@@ -19,4 +19,9 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('jwt_auth.urls')),
+    path('api/kanbans/', include('kanbans.urls')),
+    path('api/columns/', include('columns.urls')),
+    path('api/tickets/', include('tickets.urls')),
+    path('api/comments/', include('comments.urls')),
+    path('api/tasks/', include('tasks.urls'))
 ]
