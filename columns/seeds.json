@@ -1,0 +1,29 @@
+[
+{
+  "model": "columns.column",
+  "pk": 1,
+  "fields": {
+    "name": "To Do",
+    "position": 1,
+    "kanban": 1
+  }
+},
+{
+  "model": "columns.column",
+  "pk": 2,
+  "fields": {
+    "name": "In Progress",
+    "position": 2,
+    "kanban": 1
+  }
+},
+{
+  "model": "columns.column",
+  "pk": 3,
+  "fields": {
+    "name": "Complete",
+    "position": 3,
+    "kanban": 1
+  }
+}
+]
