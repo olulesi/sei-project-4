@@ -6,6 +6,7 @@ import Home from './components/common/Home'
 
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
+import KanbanView from './components/Kanbans/KanbanView'
 
 function App() {
   return (
@@ -14,8 +15,8 @@ function App() {
         <Nav />
         <Switch>
           <Route exact path="/" component={Home} />
-          {/* <Route path="/projects/:id" component={SingleProject} />
-          <Route path="/projects" component={Projects} /> */}
+          <Route path="/kanban/:id" component={KanbanView} />
+          {/* <Route path="/kanbans" component={Kanbans} /> */}
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
         </Switch>

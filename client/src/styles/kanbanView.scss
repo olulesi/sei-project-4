@@ -1,0 +1,37 @@
+.kanBan-container {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.isDraggingOver-column{
+  background-color: rgba(163, 82, 82, 0.712);
+  padding: 4px;
+  width: 250px;
+  min-height: 500px;
+}
+
+.isntDraggingOver{
+  background-color: #e8e8e8;
+  padding: 4px;
+  width: 250px;
+  min-height: 500px;
+}
+
+.isDragging{
+  background-color: #0891f3;
+}
+
+.isntDragging{
+  background-color: #456c86;
+}
+
+.column-container{
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+  align-items: center;
+  div{
+    margin: 8px;
+  }
+}
