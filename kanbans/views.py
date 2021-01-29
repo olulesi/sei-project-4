@@ -22,7 +22,7 @@ class KanbanListView(APIView):
 
 class KanbanDetailView(APIView):
 
-    permission_classes = (IsAuthenticated, )
+    # ! permission_classes = (IsAuthenticated, )
     
     def get_kanban(self, pk):
         try:

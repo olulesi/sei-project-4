@@ -1,0 +1,23 @@
+[
+{
+  "model": "jwt_auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$UOofmYymoz9O$NMx2pfNRjLXcivRatKFm2ltPAiTg+4vshU9zEtbUV2U=",
+    "last_login": "2021-01-29T10:40:32.974Z",
+    "is_superuser": true,
+    "username": "isaac",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2021-01-29T10:40:12.087Z",
+    "full_name": "Isaac Lundie-Fallon",
+    "email": "isaac@email.com",
+    "role": "",
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

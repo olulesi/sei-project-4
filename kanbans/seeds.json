@@ -1,0 +1,11 @@
+[
+{
+  "model": "kanbans.kanban",
+  "pk": 1,
+  "fields": {
+    "name": "Project One",
+    "owner": 1,
+    "members": []
+  }
+}
+]

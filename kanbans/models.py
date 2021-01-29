@@ -9,8 +9,10 @@ class Kanban(models.Model):
     )
     members = models.ManyToManyField(
         'jwt_auth.User',
-        related_name='kanbans_member_of'
+        related_name='kanbans_member_of',
+        blank=True
     )
 
     def __str__(self):
-        return f"{self.name} by {self.owner.full_name}"
+        owner_name = self.owner.full_name if self.owner.full_name else self.owner.username
+        return f"{self.name} by {owner_name}"
