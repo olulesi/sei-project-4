@@ -31,7 +31,15 @@
   flex-direction: column;
   margin-top: 100px;
   align-items: center;
-  div{
-    margin: 8px;
+  .message-header{
+    width: 100%;
+    padding: 0.5em 1em;
   }
+  div{
+    margin: 0px;
+  }
+}
+
+.message-body{
+  border: none;
 }
