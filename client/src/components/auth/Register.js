@@ -1,13 +1,19 @@
 import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
-import useForm from '../../utils/useForm'
+import ImageUploadField from '../common/ImageUploadField'
 import { registerUser } from '../lib/api'
+import useForm from '../../utils/useForm'
 import unpackErrors from '../../utils/unpackErrors'
 import useErrorAnimation from '../../utils/useErrorAnimation'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faEnvelope, faLock, faExclamationTriangle, faCheck } from '@fortawesome/free-solid-svg-icons'
+
+const initialize = string => {
+  if (!string) return
+  return string.trim().split(/ +/).map(item => item[0].toUpperCase()).join('')
+}
 
 const genericErrorMessage = 'This field may not be blank.'
 
@@ -42,26 +48,33 @@ function Register() {
   const passwordConfirmationIsValid = formdata.password === formdata.passwordConfirmation &&
     formdata.password.length >= 8 && !errors.password
   
-  console.log(errors)
-
   return (
     <>
       <section className={`register-form-container ${hasErrorAnimationClass ? 'error-animation' : ''}`}>
         <h1>Sign Up</h1>
         <div className='form-box ui form error'>
           <form onSubmit={handleSubmit}>
-            <div className='field'>
-              <label className='label'>Avatar</label>
-              <div className='control'>
-                <input
-                  onChange={handleChange}
-                  type='file' 
-                  className='input'
-                  name='avatar' 
-                  value={formdata.avatar}
-                />
+            <div className='field avatar-field'>
+              <div className='avatar-container'>
+                {formdata.avatar ?
+                  <img src={formdata.avatar} className='avatar' />
+                  :
+                  <p className='initials'>
+                    {initialize(formdata.fullName)}
+                  </p>
+                }
               </div>
             </div>
+
+            <div className='field'>
+              <ImageUploadField
+                onChange={handleChange}
+                value={formdata.avatar}
+                name='avatar'
+                labelText='Avatar'
+              />
+            </div>
+
             <div className='field'>
               <label className='label'>Full Name</label>
               <div className='control has-icons-left has-icons-right'>

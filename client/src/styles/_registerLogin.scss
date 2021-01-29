@@ -12,7 +12,6 @@
     font-size: 50px;
     font-family: 'Comfortaa', cursive;
     margin-bottom: 40px;
-
   }
   height: 500px;
   width: 450px;
@@ -52,6 +51,28 @@ border: 1px solid #e6e6e6;
     font-size: 40px;
     font-family: 'Comfortaa', cursive;
     margin: 20px 0 20px 0;
+  }
+}
+
+.avatar-field {
+  display: flex;
+  justify-content: center;
+  .avatar-container {
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    background-color: $grey-lighter;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img.avatar {
+      width: 100%;
+      height: auto;
+    }
+    p.initials {
+      font-size: 40px;
+    }
   }
 }
 
