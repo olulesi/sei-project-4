@@ -1,7 +1,36 @@
+section{
+  width: 1200px;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+
 .kanBan-container {
   display: flex;
   justify-content: center;
-  height: 100vh;
+  overflow-x: auto;
+  //ADD NEW COLUMN STYLING
+  .front{
+    margin-top: 110px;
+    width: 200px;
+    background-color: #e8e8e8;
+  }
+  .form{
+    background-color: #e8e8e8;
+    margin-top: 110px;
+    border-radius: 5px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    .button{
+      margin-top: 10px;
+    }
+    .delete{
+      margin: 20px 10px;
+    }
+  }
 }
 
 .isDraggingOver-column{
@@ -42,4 +71,15 @@
 
 .message-body{
   border: none;
+}
+
+// CREATE TICKET
+
+textarea{
+  height: 80px;
+}
+
+.ticket-button{
+  background-color: white;
+  width: 100%;
 }

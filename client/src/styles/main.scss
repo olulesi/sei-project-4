@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&display=swap');
 
 $input-icon-active-color: hsl(0, 0%, 86%); // $grey-lighter
-
+// @import 'normalize.css';
 @import '~bulma/bulma.sass';
 @import '_registerLogin.scss';
 @import '_kanbanView.scss';
+// @import '_reset.scss';
 
 .danger-color {
   color: $danger;

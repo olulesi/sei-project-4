@@ -5,6 +5,8 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 import { getKanban, editTicket } from '../../lib/api'
 import dragAndDrop from '../../utils/dragAndDrop'
+import AddNewColumn from './AddNewColumn'
+import CreateTicket from './CreateTicket'
 
 const onDragEnd = dragAndDrop()
 
@@ -15,7 +17,7 @@ function objectifyColumns(columnsArray) {
     obj[column.position] = { name: column.name, items: [] }
     const sortedTickets = [...column.tickets].sort((a, b) => a.position - b.position)
     for (const ticket of sortedTickets) {
-      obj[column.position].items.push({ ... ticket, id: String(ticket.id) })
+      obj[column.position].items.push({ ...ticket, id: String(ticket.id) })
     }
   }
   return obj
@@ -49,7 +51,10 @@ function KanbanView() {
 
   const [kanban, setKanban] = React.useState(null)
   const [columns, setColumns] = React.useState(null)
+  const [newColumnName, setnewColumnName] = React.useState('')
+  const [newTicketName, setNewTicketName] = React.useState('')
   const { id } = useParams()
+
 
   React.useEffect(() => {
     const getData = async () => {
@@ -64,9 +69,41 @@ function KanbanView() {
     getData()
   }, [id])
 
+  const handleSubmit = e => {
+    e.preventDefault()
+    if (!newColumnName) return
+    const newColumnLength = Object.keys(columns).length + 1
+    const listOfColumns = { 
+      ...columns, 
+      [newColumnLength]: {
+        name: newColumnName,
+        items: []
+      }
+    }
+    setnewColumnName('')
+    setColumns(listOfColumns)
+    console.log('submitted')
+  }
+  const handleTicketSubmit = e => {
+    e.preventDefault()
+    if (!newTicketName) return
+    console.log(newTicketName)
+    const currentColumn = Object.keys(columns).length + 1
+    // const listOfColumns = { 
+    //   ...columns, 
+    //   [newColumnLength]: {
+    //     name: newColumnName,
+    //     items: []
+    //   }
+    // }
+    setnewColumnName('')
+    console.log('submitted')
+  }
+
   return (
     <>
-      {columns &&
+      <section>
+        {columns &&
         <div className="kanBan-container">
           <DragDropContext
             onDragEnd={result => {
@@ -79,19 +116,21 @@ function KanbanView() {
                 <div className="column-container column is-narrow" key={id}>
                   <div className="message-header">
                     <h2>{column.name}</h2>
+                    <button name={id} onClick={(e) => console.log(e.target.name)}>here</button>
                     <span className="pagination-ellipsis">&hellip;</span>
                   </div>
+
                   <div>
-                    <Droppable  droppableId={id} >
+                    <Droppable droppableId={id} >
                       {(provided, snapshot) => {
                         return (
-                          <div 
+                          <div
                             {...provided.droppableProps}
                             ref={provided.innerRef}
                             className={`${snapshot.isDraggingOver ? 'isDraggingOver-column' : 'isntDraggingOver'}`}>
                             {column.items.map((item, index) => {
                               return (
-                              // that index is used to tell us what we are dragging from and what we are dragging to
+                                // that index is used to tell us what we are dragging from and what we are dragging to
                                 <Draggable key={item.id} draggableId={item.id} index={index}>
                                   {(provided, snapshot) => {
                                     return (
@@ -116,6 +155,7 @@ function KanbanView() {
                               )
                             })}
                             {provided.placeholder}
+                            
                           </div>
                         )
                       }}
@@ -125,8 +165,13 @@ function KanbanView() {
               )
             })}
           </DragDropContext>
+          <AddNewColumn 
+            handleSubmit={handleSubmit} 
+            newColumnName={newColumnName} 
+            setnewColumnName={setnewColumnName} />
         </div>
-      }
+        }
+      </section>
     </>
   )
 }
