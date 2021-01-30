@@ -10,7 +10,7 @@ from .serializers.populated import PopulatedTicketSerializer
 
 class TicketListView(APIView):
 
-    permission_classes = (IsAuthenticated, )
+    # ! permission_classes = (IsAuthenticated, )
 
     def post(self, request):
         request.data['creator'] = request.user.id
@@ -22,7 +22,7 @@ class TicketListView(APIView):
 
 class TicketDetailView(APIView):
 
-    permission_classes = (IsAuthenticated, )
+    # ! permission_classes = (IsAuthenticated, )
 
     def get_ticket(self, pk):
         try:

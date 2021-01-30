@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
 import ImageUploadField from '../common/ImageUploadField'
-import { registerUser } from '../lib/api'
+import { registerUser } from '../../lib/api'
 import useForm from '../../utils/useForm'
 import unpackErrors from '../../utils/unpackErrors'
 import useErrorAnimation from '../../utils/useErrorAnimation'

@@ -1,8 +1,8 @@
 import React from 'react'
 import { useHistory, Link } from 'react-router-dom'
 
-import { loginUser } from '../lib/api'
-import { setToken } from '../lib/auth'
+import { loginUser } from '../../lib/api'
+import { setToken } from '../../lib/auth'
 import useForm from '../../utils/useForm'
 import useErrorAnimation from '../../utils/useErrorAnimation'
 

@@ -13,6 +13,7 @@ class Ticket(models.Model):
     priority = models.PositiveIntegerField(choices=PRIORITYS, default=PRIORITYS[0])
     deadline = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    position = models.PositiveIntegerField()
     column = models.ForeignKey(
         'columns.Column',
         related_name='tickets',

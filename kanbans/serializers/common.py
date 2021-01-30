@@ -6,3 +6,9 @@ class KanbanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Kanban
         fields = '__all__'
+
+# class UpdateKanbanSerializer(serializers.ModelSerializer):
+
+#     class Meta:
+#         model = Kanban
+#         fields = ('id', 'name', 'columns')

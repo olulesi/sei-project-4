@@ -1,95 +1,134 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+
+import { getKanban, editTicket } from '../../lib/api'
 import dragAndDrop from '../../utils/dragAndDrop'
-
-const itemsFromBackend = [
-  { id: '1', content: 'First task' },
-  { id: '2', content: 'Second task' }
-]
-
-const columnsFromBackend = 
-  {
-    '21': {
-      name: 'Todo',
-      items: itemsFromBackend
-    },
-    '22': {
-      name: 'Progress',
-      items: []
-    },
-    '23': {
-      name: 'Done',
-      items: []
-    } 
-  }
-
 
 const onDragEnd = dragAndDrop()
 
+function objectifyColumns(columnsArray) {
+  const obj = {}
+  const sortedColumns = [...columnsArray].sort((a, b) => a.position - b.position)
+  for (const column of sortedColumns) {
+    obj[column.position] = { name: column.name, items: [] }
+    const sortedTickets = [...column.tickets].sort((a, b) => a.position - b.position)
+    for (const ticket of sortedTickets) {
+      obj[column.position].items.push({ ... ticket, id: String(ticket.id) })
+    }
+  }
+  return obj
+}
+
+const updateTicketsAffectedByDND = async (result, newColumns) => {
+  if (!result.destination) return
+  const requestsArray = []
+  let destinationPositionCount = 1
+  for (const ticket of newColumns[result.destination.droppableId].items) {
+    requestsArray.push(editTicket(ticket.id, {
+      name: ticket.name,
+      column: result.destination.droppableId,
+      position: destinationPositionCount
+    }))
+    destinationPositionCount++
+  }
+  let sourcePositionCount = 1
+  for (const ticket of newColumns[result.source.droppableId].items) {
+    requestsArray.push(editTicket(ticket.id, {
+      name: ticket.name,
+      column: result.source.droppableId,
+      position: sourcePositionCount
+    }))
+    sourcePositionCount++
+  }
+  await Promise.all(requestsArray)
+}
+
 function KanbanView() {
 
-  const [columns, setColumns] = React.useState(columnsFromBackend)
+  const [kanban, setKanban] = React.useState(null)
+  const [columns, setColumns] = React.useState(null)
+  const { id } = useParams()
+
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await getKanban(id)
+        setKanban(data)
+        setColumns(objectifyColumns(data.columns))
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getData()
+  }, [id])
 
   return (
-
     <>
-      <div className="kanBan-container">
-        <DragDropContext onDragEnd={result => onDragEnd(result, columns, setColumns)}>
-          {Object.entries(columns).map(([id, column]) => {
-            return (
-              <div className="column-container column is-narrow" key={id}>
-                <div className="message-header">
-                  <h2>{column.name}</h2>
-                  <span className="pagination-ellipsis">&hellip;</span>
+      {columns &&
+        <div className="kanBan-container">
+          <DragDropContext
+            onDragEnd={result => {
+              const newColumns = onDragEnd(result, columns, setColumns)
+              updateTicketsAffectedByDND(result, newColumns)
+            }}
+          >
+            {Object.entries(columns).map(([id, column]) => {
+              return (
+                <div className="column-container column is-narrow" key={id}>
+                  <div className="message-header">
+                    <h2>{column.name}</h2>
+                    <span className="pagination-ellipsis">&hellip;</span>
+                  </div>
+                  <div>
+                    <Droppable  droppableId={id} >
+                      {(provided, snapshot) => {
+                        return (
+                          <div 
+                            {...provided.droppableProps}
+                            ref={provided.innerRef}
+                            className={`${snapshot.isDraggingOver ? 'isDraggingOver-column' : 'isntDraggingOver'}`}>
+                            {column.items.map((item, index) => {
+                              return (
+                              // that index is used to tell us what we are dragging from and what we are dragging to
+                                <Draggable key={item.id} draggableId={item.id} index={index}>
+                                  {(provided, snapshot) => {
+                                    return (
+                                      <div
+                                        {...provided.draggableProps}
+                                        {...provided.dragHandleProps}
+                                        ref={provided.innerRef}
+                                        style={{
+                                          userSelect: 'none',
+                                          padding: 16,
+                                          margin: '0 0 8px 0',
+                                          minHeight: '50px',
+                                          color: 'white',
+                                          ...provided.draggableProps.style
+                                        }}
+                                        className={`message-body ${snapshot.isDraggingOver ? 'isDragging' : 'isntDragging'}`}>
+                                        {item.name}
+                                      </div>
+                                    )
+                                  }}
+                                </Draggable>
+                              )
+                            })}
+                            {provided.placeholder}
+                          </div>
+                        )
+                      }}
+                    </Droppable>
+                  </div>
                 </div>
-                <div>
-                  <Droppable  droppableId={id} >
-                    {(provided, snapshot) => {
-                      return (
-                        <div 
-                          {...provided.droppableProps}
-                          ref={provided.innerRef}
-                          className={`${snapshot.isDraggingOver ? 'isDraggingOver-column' : 'isntDraggingOver'}`}>
-                          {column.items.map((item, index) => {
-                            return (
-                            // that index is used to tell us what we are dragging from and what we are dragging to
-                              <Draggable key={item.id} draggableId={item.id} index={index}>
-                                {(provided, snapshot) => {
-                                  return (
-                                    <div
-                                      {...provided.draggableProps}
-                                      {...provided.dragHandleProps}
-                                      ref={provided.innerRef}
-                                      style={{
-                                        userSelect: 'none',
-                                        padding: 16,
-                                        margin: '0 0 8px 0',
-                                        minHeight: '50px',
-                                        color: 'white',
-                                        ...provided.draggableProps.style
-                                      }}
-                                      className={`message-body ${snapshot.isDraggingOver ? 'isDragging' : 'isntDragging'}`}>
-                                      {item.content}
-                                    </div>
-                                  )
-                                }}
-                              </Draggable>
-                            )
-                          })}
-                          {provided.placeholder}
-                        </div>
-                      )
-                    }}
-                  </Droppable>
-                </div>
-              </div>
-            )
-          })}
-        </DragDropContext>
-      </div>
+              )
+            })}
+          </DragDropContext>
+        </div>
+      }
     </>
   )
-
-
 }
+
 export default KanbanView

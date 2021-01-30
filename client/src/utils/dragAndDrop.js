@@ -1,7 +1,6 @@
 function dragAndDrop() {
 
   const onDragEnd = (result, columns, setColumns) => {
-    
     if (!result.destination) return
     const { source, destination } = result
     if (source.droppableId !== destination.droppableId) {
@@ -12,7 +11,7 @@ function dragAndDrop() {
       //now we remove it from the original array and place on the destination array
       const [removed] = sourceItems.splice(source.index, 1)
       destItems.splice(destination.index, 0, removed)
-      setColumns({
+      const newColumns = {
         ...columns,
         [source.droppableId]: {
           ...sourceColumn,
@@ -20,26 +19,31 @@ function dragAndDrop() {
           items: sourceItems
         },
         // now to keep the dest items in place with addition of new ticket so sending in the set state 
-        [ destination.droppableId]: {
+        [destination.droppableId]: {
           ...destColumn,
           items: destItems
         }
-      })
+      }
+      setColumns(newColumns)
+      return newColumns
     } else {
       const column = columns[source.droppableId]
       const copiedItems = [...column.items]
       const [removed] = copiedItems.splice(source.index, 1)
       copiedItems.splice(destination.index, 0, removed)
-      setColumns({
-      // to keep all columns in place
+      const newColumns = {
+        // to keep all columns in place
         ...columns,
         [source.droppableId]: {
           ...column,
           items: copiedItems
         }
-      })
+      }
+      setColumns(newColumns)
+      return newColumns
     }
   }
+  
   return onDragEnd
 }
 

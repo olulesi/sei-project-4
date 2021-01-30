@@ -4,7 +4,7 @@ $input-icon-active-color: hsl(0, 0%, 86%); // $grey-lighter
 
 @import '~bulma/bulma.sass';
 @import '_registerLogin.scss';
-@import 'kanbanView.scss';
+@import '_kanbanView.scss';
 
 .danger-color {
   color: $danger;

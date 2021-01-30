@@ -7,10 +7,11 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Kanban
 from .serializers.common import KanbanSerializer
 from .serializers.populated import PopulatedKanbanSerializer
+# from .serializers.populated import PopulatedUpdateKanbanSerializer
 
 class KanbanListView(APIView):
 
-    permission_classes = (IsAuthenticated, )
+    # ! permission_classes = (IsAuthenticated, )
 
     def post(self, request):
         request.data['owner'] = request.user.id
