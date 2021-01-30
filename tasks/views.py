@@ -9,7 +9,7 @@ from .serializers.common import TaskSerializer
 
 class TaskListView(APIView):
 
-    permission_classes = (IsAuthenticated, )
+    # ! permission_classes = (IsAuthenticated, )
 
     def post(self, request):
         task_to_create = TaskSerializer(data=request.data)
@@ -20,7 +20,7 @@ class TaskListView(APIView):
 
 class TaskDetailView(APIView):
 
-    permission_classes = (IsAuthenticated, )
+    # ! permission_classes = (IsAuthenticated, )
 
     def get_task(self, pk):
         try:

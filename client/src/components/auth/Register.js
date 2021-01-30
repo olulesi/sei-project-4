@@ -95,7 +95,15 @@ function Register() {
                   </span>
                 }
               </div>
-              {errors.fullName && <p className='help is-danger'>Full Name is Required</p>}
+              {errors.fullName &&
+                <p className='help is-danger'>
+                  {errors.fullName === genericErrorMessage ?
+                    'Full Name is Required'
+                    :
+                    errors.fullName
+                  }
+                </p>
+              }
             </div>
 
             <div className='field'>
@@ -118,7 +126,15 @@ function Register() {
                   </span>
                 }
               </div>
-              {errors.email && <p className='help is-danger'>Email is Required</p>}
+              {errors.email &&
+                <p className='help is-danger'>
+                  {errors.email === genericErrorMessage ?
+                    'Email is Required'
+                    :
+                    errors.email
+                  }
+                </p>
+              }
             </div>
 
             <div className='field'>
