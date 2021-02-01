@@ -1,11 +1,9 @@
 import React from 'react'
 
-function CreateTicket({ handleTicketSubmit, newTicketName, setNewTicketName }) {
+function CreateTicket({ handleTicketSubmit, newTicketName, setNewTicketName, id }) {
 
   const [newTicket, setnewTicket] = React.useState(false)
   
-
-
   const handleClick = () => {
     setnewTicket(!newTicket)
   }
@@ -22,7 +20,7 @@ function CreateTicket({ handleTicketSubmit, newTicketName, setNewTicketName }) {
         <button className="button ticket-button" onClick={handleClick}>Add another card</button>
       )}
       {newTicket && (
-        <form className="form" onSubmit={ handleTicketSubmit }>
+        <form className="form ticket-form" name={id} onSubmit={ handleTicketSubmit }>
           {/* adding an event listener when the input changes fire handle change function */}
           {/* you put the submit handle on the form not the button cause it is in a form */}
           <div>

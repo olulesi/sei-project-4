@@ -10,7 +10,7 @@ class Ticket(models.Model):
 
     name = models.CharField(max_length=50)
     description = models.TextField(max_length=300, blank=True)
-    priority = models.PositiveIntegerField(choices=PRIORITYS, default=PRIORITYS[0])
+    priority = models.PositiveIntegerField(choices=PRIORITYS, default=PRIORITYS[0][0])
     deadline = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     position = models.PositiveIntegerField()

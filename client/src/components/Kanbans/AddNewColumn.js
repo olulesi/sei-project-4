@@ -18,9 +18,7 @@ function AddNewColumn({ handleSubmit, newColumnName, setnewColumnName }) {
         <button className="button front column is-narrow column-container" onClick={handleClick}>Add another List</button>
       )}
       {newColumn && (
-        <form className="form add-list column is-narrow " onSubmit={ handleSubmit }>
-          {/* adding an event listener when the input changes fire handle change function */}
-          {/* you put the submit handle on the form not the button cause it is in a form */}
+        <form className="form column-form add-list column is-narrow " onSubmit={ handleSubmit }>
           <div>
             <input
               className="input"

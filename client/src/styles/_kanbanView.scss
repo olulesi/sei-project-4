@@ -1,5 +1,5 @@
 section{
-  width: 1200px;
+  width: 100vw;
   display: flex;
   justify-content: center;
   padding: 0;
@@ -8,15 +8,17 @@ section{
 
 .kanBan-container {
   display: flex;
-  justify-content: center;
-  overflow-x: auto;
+  max-width: 95%;
+  max-height: 100%;
+  // justify-content: center;
+  overflow-x:scroll;
   //ADD NEW COLUMN STYLING
   .front{
     margin-top: 110px;
     width: 200px;
     background-color: #e8e8e8;
   }
-  .form{
+  .column-form{
     background-color: #e8e8e8;
     margin-top: 110px;
     border-radius: 5px;
@@ -82,4 +84,19 @@ textarea{
 .ticket-button{
   background-color: white;
   width: 100%;
+}
+
+.ticket-form{
+  background-color: #e8e8e8;
+  height: 110px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  .button{
+    margin-top: 10px;
+  }
+  .delete{
+    margin: 20px 10px;
+  }
 }

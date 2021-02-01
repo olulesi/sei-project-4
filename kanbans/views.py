@@ -11,10 +11,10 @@ from .serializers.populated import PopulatedKanbanSerializer
 
 class KanbanListView(APIView):
 
-    # ! permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated, )
 
     def post(self, request):
-        request.data['owner'] = request.user.id
+        # request.data['owner'] = request.user.id
         kanban_to_create = KanbanSerializer(data=request.data)
         if kanban_to_create.is_valid():
             kanban_to_create.save()

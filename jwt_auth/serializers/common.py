@@ -35,4 +35,4 @@ class NestedUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'full_name', 'role', 'avatar')
+        fields = ('id', 'full_name', 'email', 'role', 'avatar')

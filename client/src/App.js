@@ -8,6 +8,9 @@ import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import KanbanView from './components/kanbans/KanbanView'
 
+import Profile from './components/users/Profile'
+import EditProfile from './components/users/EditProfile'
+
 function App() {
   return (
     <>
@@ -18,6 +21,9 @@ function App() {
           <Route path='/kanbans/:id' component={KanbanView} />
           <Route path='/register' component={Register} />
           <Route path='/login' component={Login} />
+          <Route path="/profile/edit" component={EditProfile} />
+          <Route path="/profile/:id" component={Profile} />
+          
         </Switch>
       </BrowserRouter>
     </>
