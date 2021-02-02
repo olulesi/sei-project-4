@@ -8,6 +8,7 @@ class Kanban(models.Model):
         (3, 'Background 3'),
         (4, 'Background 4'),
     )
+
     name = models.CharField(max_length=30)
     background = models.PositiveIntegerField(choices=BACKGROUNDS, default=BACKGROUNDS[0][0])
     owner = models.ForeignKey(

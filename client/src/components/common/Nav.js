@@ -9,13 +9,9 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 function Nav() {
 
-
   const [profile, setProfile] = React.useState({})
-
   const location = useLocation()
-
   const isLoggedIn = isAuthenticated()
-
   const history = useHistory()
 
   React.useEffect(() => {
@@ -118,8 +114,8 @@ function Nav() {
           </div>
         </>
       }
-
     </nav>
   )
 }
+
 export default Nav

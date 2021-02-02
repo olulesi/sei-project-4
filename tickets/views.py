@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from .models import Ticket
 from .serializers.common import TicketSerializer
-from .serializers.populated import PopulatedTicketSerializer
+from .serializers.populated import PopulatedTicketSerializer, WritablePopulatedTicketSerializer
 
 class TicketListView(APIView):
 
@@ -37,7 +37,7 @@ class TicketDetailView(APIView):
 
     def put(self, request, pk):
         ticket_to_edit = self.get_ticket(pk)
-        edited_ticket = TicketSerializer(ticket_to_edit, data=request.data)
+        edited_ticket = WritablePopulatedTicketSerializer(ticket_to_edit, data=request.data)
         if edited_ticket.is_valid():
             edited_ticket.save()
             return Response(edited_ticket.data, status=status.HTTP_202_ACCEPTED)

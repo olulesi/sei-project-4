@@ -58,66 +58,21 @@ border: 1px solid #e6e6e6;
   }
 }
 
-// .field{
-//   span, input{
+// .field {
+//   span, input {
 //     color: var(--color-secondary);
 //   }
 // }
 
-// .label{
+// .label {
 //   color: var(--color-secondary);
 // }
 
-// .register-link{
+// .register-link {
 //   color: var(--color-secondary);
 // }
 
 .avatar-field {
   display: flex;
   justify-content: center;
-  // controls profile page avatar as well
-  .avatar-container {
-    height: 160px;
-    width: 160px;
-    border-radius: 50%;
-    background-color: $grey-lighter;
-    // background-color: var(--color-primary);
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img.avatar {
-      width: 100%;
-      height: auto;
-    }
-    p.initials {
-      font-size: 50px;
-      // color: var(--color-secondary);
-    }
-  }
-}
-
-.error-animation {
-  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-}
-
-@keyframes shake {
-  10%, 90% {
-    transform: translate3d(-1px, 0, 0);
-  }
-  
-  20%, 80% {
-    transform: translate3d(2px, 0, 0);
-  }
-
-  30%, 50%, 70% {
-    transform: translate3d(-4px, 0, 0);
-  }
-
-  40%, 60% {
-    transform: translate3d(4px, 0, 0);
-  }
 }

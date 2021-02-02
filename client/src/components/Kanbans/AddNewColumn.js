@@ -18,7 +18,10 @@ function AddNewColumn({ handleSubmit, newColumnName, setnewColumnName }) {
   return (
     <>  
       {!newColumn && (
-        <button className="button front" onClick={handleClick}><FontAwesomeIcon className="plus-icon" icon={faPlus} />Add another List</button>
+        <button className="button front" onClick={handleClick}>
+          <FontAwesomeIcon className="plus-icon" icon={faPlus}/>
+          Add another List
+        </button>
       )}
       {newColumn && (
         <form className="addNewColumn-form" onSubmit={ handleSubmit }>

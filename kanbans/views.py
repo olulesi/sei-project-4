@@ -7,14 +7,13 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Kanban
 from .serializers.common import KanbanSerializer
 from .serializers.populated import PopulatedKanbanSerializer
-# from .serializers.populated import PopulatedUpdateKanbanSerializer
 
 class KanbanListView(APIView):
 
     permission_classes = (IsAuthenticated, )
 
     def post(self, request):
-        # request.data['owner'] = request.user.id
+        # ! request.data['owner'] = request.user.id
         kanban_to_create = KanbanSerializer(data=request.data)
         if kanban_to_create.is_valid():
             kanban_to_create.save()

@@ -28,6 +28,11 @@ export function editUserProfile(formdata) {
   return axios.put(`${baseUrl}/auth/profile/`, formdata, headers())
 }
 
+export function findUser(email) {
+  return axios.get(`${baseUrl}/auth/user/${email}`, )
+}
+
+
 
 // * KANBAN Requests
 
@@ -48,7 +53,7 @@ export function getKanban(id) {
 // }
 
 export function editKanban(id, formdata) {
-  return axios.put(`${baseUrl}/kanabans/${id}/`, formdata)
+  return axios.put(`${baseUrl}/kanbans/${id}/`, formdata)
 }
 
 // export function editKanban(id, formdata) {

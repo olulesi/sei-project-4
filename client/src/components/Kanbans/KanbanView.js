@@ -3,10 +3,19 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
-import { getKanban, editTicket } from '../../lib/api'
+import TicketCard from './TicketCard'
+import TicketShow from './TicketShow'
+import Avatar from '../common/Avatar'
+import { getKanban, editKanban, findUser, getTicket, editTicket } from '../../lib/api'
+import { isOwner } from '../../lib/auth'
+import useForm from '../../utils/useForm'
+import useErrorAnimation from '../../utils/useErrorAnimation'
 import dragAndDrop from '../../utils/dragAndDrop'
 import AddNewColumn from './AddNewColumn'
 import CreateTicket from './CreateTicket'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearchPlus } from '@fortawesome/free-solid-svg-icons'
 
 const onDragEnd = dragAndDrop()
 
@@ -24,12 +33,13 @@ function objectifyColumns(columnsArray) {
 }
 
 const updateTicketsAffectedByDND = async (result, newColumns) => {
+  console.log(newColumns)
   if (!result.destination) return
   const requestsArray = []
   let destinationPositionCount = 1
   for (const ticket of newColumns[result.destination.droppableId].items) {
     requestsArray.push(editTicket(ticket.id, {
-      name: ticket.name,
+      ...ticket,
       column: result.destination.droppableId,
       position: destinationPositionCount
     }))
@@ -38,7 +48,7 @@ const updateTicketsAffectedByDND = async (result, newColumns) => {
   let sourcePositionCount = 1
   for (const ticket of newColumns[result.source.droppableId].items) {
     requestsArray.push(editTicket(ticket.id, {
-      name: ticket.name,
+      ...ticket,
       column: result.source.droppableId,
       position: sourcePositionCount
     }))
@@ -51,6 +61,11 @@ function KanbanView() {
 
   const [kanban, setKanban] = React.useState(null)
   const [columns, setColumns] = React.useState(null)
+  const { formdata, setFormdata, handleChange } = useForm(null)
+  const [rerenderSwitch, setRerenderSwitch] = React.useState(0)
+  const [addMemberEmail, setAddMemberEmail] = React.useState('')
+  const [addMemberError, setAddMemberError] = React.useState(false)
+  const { hasErrorAnimationClass, errorAnimation } = useErrorAnimation()
   const [newColumnName, setnewColumnName] = React.useState('')
   const [newTicketName, setNewTicketName] = React.useState('')
   const { id } = useParams()
@@ -66,9 +81,63 @@ function KanbanView() {
       }
     }
     getData()
-  }, [id])
+  }, [id, rerenderSwitch])
 
-  const handleSubmit = e => {
+  const rerender = () => {
+    setRerenderSwitch(1 ^ rerenderSwitch)
+  }
+
+  const members = kanban ? kanban.members : null
+
+  const currentUser = kanban ? kanban.members.find(member => member.id === 1) : null
+  // ! const currentUser = kanban ? kanban.members.find(member => isOwner(member.id)) : null
+
+  const handleAddMemberEmailChange = event => {
+    setAddMemberEmail(event.target.value)
+    setAddMemberError(false)
+  }
+
+  const handleAddMember = async event => {
+    event.preventDefault()
+    try {
+      const { data } = await findUser(addMemberEmail)
+      const membersIds = kanban.members.map(member => member.id)
+      membersIds.push(data.id)
+      await editKanban(id, {
+        name: kanban.name,
+        background: kanban.background,
+        owner: kanban.owner.id,
+        members: [...new Set(membersIds)]
+      })
+      setAddMemberEmail('')
+      rerender()
+    } catch (err) {
+      setAddMemberError(true)
+      errorAnimation()
+    }
+  }
+
+  const handleTicketShow = async id => {
+    try {
+      const { data } = await getTicket(id)
+      setFormdata(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const handleTicketSubmit = async event => {
+    event.preventDefault()
+    try {
+      await editTicket(formdata.id, formdata)
+      setFormdata(null)
+      rerender()
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const handleColumnCreate = e => {
     e.preventDefault()
     if (!newColumnName) return
     const newColumnLength = Object.keys(columns).length + 1
@@ -84,7 +153,7 @@ function KanbanView() {
     console.log('submitted')
   }
 
-  const handleTicketSubmit = e => {
+  const handleTicketCreate = e => {
     e.preventDefault()
     const currColumn = e.target.name
     if (!newTicketName) return
@@ -107,6 +176,52 @@ function KanbanView() {
 
   return (
     <>
+      <div className='members-avatars-container'>
+        {kanban &&
+          kanban.members.map((member, index) => (
+            <div key={member.id}>
+              <Avatar
+                size='medium'
+                avatar={member.avatar}
+                fullName={member.fullName}
+                hasTooltip={true}
+                style={{
+                  position: 'relative',
+                  left: `${members.length % 2 === 1 ?
+                    15 * (index - Math.floor(members.length / 2))
+                    :
+                    15 * (index - ((members.length - 1) / 2))
+                  }px`,
+                  zIndex: `${members.length - index}`
+                }}
+              />
+            </div>
+          ))
+        }
+      </div>
+
+      <div className='add-member'>
+        <form
+          onSubmit={handleAddMember}
+          className={`${hasErrorAnimationClass ? 'error-animation' : ''}`}
+        >
+          <div className='field'>
+            <div className='control has-icons-left'>
+              <input
+                type='text'
+                className={`input ${addMemberError ? 'is-danger' : ''}`}
+                onChange={handleAddMemberEmailChange}
+                value={addMemberEmail}
+                placeholder='Add member by email...'
+              />
+              <span className='icon is-small is-left'>
+                <FontAwesomeIcon icon={faSearchPlus}/>
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
+      
       {kanban ?
         <>
           <section className={`kanban-background-${kanban.background}`}>
@@ -136,41 +251,33 @@ function KanbanView() {
                                   className={`${snapshot.isDraggingOver ? 'isDraggingOver-column' : 'isntDraggingOver'}`}>
                                   {column.items.map((item, index) => {
                                     return (
-                                      // that index is used to tell us what we are dragging from and what we are dragging to
+                                      // index used to tell us where we are dragging from and where we are dragging to
                                       <Draggable key={item.id} draggableId={item.id} index={index}>
                                         {(provided, snapshot) => {
                                           return (
-                                            <div
-                                              {...provided.draggableProps}
-                                              {...provided.dragHandleProps}
-                                              ref={provided.innerRef}
-                                              style={{
-                                                userSelect: 'none',
-                                                padding: 16,
-                                                margin: '0px auto 8px auto',
-                                                minHeight: '50px',
-                                                ...provided.draggableProps.style
-                                              }}
-                                              className={`message-body ${snapshot.isDraggingOver ? 'isDragging' : 'isntDragging'}`}>
-                                              {item.name}
-                                            </div>
+                                            <TicketCard
+                                              provided={provided}
+                                              snapshot={snapshot}
+                                              item={item}
+                                              handleTicketShow={handleTicketShow}
+                                            />
                                           )
                                         }}
                                       </Draggable>
                                     )
                                   })}
                                   {provided.placeholder}
-
                                 </div>
                               )
                             }}
                           </Droppable>
                         </div>
+
                         <CreateTicket
                           id={id}
                           newTicketName={newTicketName}
                           setNewTicketName={setNewTicketName}
-                          handleTicketSubmit={handleTicketSubmit}
+                          handleSubmit={handleTicketCreate}
                           columns={columns}
                         />
                       </div>
@@ -178,15 +285,29 @@ function KanbanView() {
                   })}
                 </DragDropContext>
                 <AddNewColumn
-                  handleSubmit={handleSubmit}
+                  handleSubmit={handleColumnCreate}
                   newColumnName={newColumnName}
-                  setnewColumnName={setnewColumnName} />
+                  setnewColumnName={setnewColumnName}/>
               </div>
             }
           </section>
         </>
         :
         <div>🇳🇬</div>
+      }
+
+      {formdata &&
+        <div className='modal is-active'>
+          <div className='modal-background'></div>
+          <TicketShow
+            formdata={formdata}
+            setFormdata={setFormdata}
+            handleChange={handleChange}
+            handleSubmit={handleTicketSubmit}
+            members={members}
+            currentUser={currentUser}
+          />
+        </div>
       }
     </>
   )

@@ -1,4 +1,26 @@
-section{
+.members-avatars-container {
+  width: 300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  .avatar-container {
+    border: 3px solid white;
+  }
+}
+
+.add-member {
+  width: 250px;
+  margin: 0 auto;
+}
+
+.kanBan-container {
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - 52px);
+}
+
+section {
   width: 100vw;
   display: flex;
   justify-content: flex-start;
@@ -6,19 +28,19 @@ section{
   height: 100vh;
 }
 
-.column.is-narrow{
+.column.is-narrow {
   width: 272px;
 }
-
 
 .kanBan-container {
   display: flex;
   max-width: 95%;
   max-height: 100%;
   margin-left: 10px;
-  overflow-x:scroll;
-  //ADD NEW COLUMN STYLING
-  .front{
+  overflow-x: scroll;
+
+  // CREATE COLUMN STYLING
+  .front {
     display: flex;
     margin-top: 10px;
     width: 280px;
@@ -26,7 +48,7 @@ section{
     border: none;
     justify-content: flex-start;
   }
-  .addNewColumn-form{
+  .addNewColumn-form {
     background-color: #e8e8e8;
     margin-top: 10px;
     border-radius: 5px;
@@ -36,10 +58,10 @@ section{
     flex-direction: column;
     justify-content: center;
     padding: 5px;
-    div{
+    div {
       display: flex;
       align-items: center;
-      .input{
+      .input {
         height: 36px;
         box-shadow: 0 0 0 2px #0079bf;
         border:none;
@@ -47,68 +69,66 @@ section{
         
       }
     }
-
     ::placeholder {
       color: #172b4dc7;
     }
-
-    .button{
+    .button {
       margin-top: 5px;
       height: 35px;
       width: 81px;
       // color: var(--color-primary);
       // color: var(--color-secondary);
     }
-    .button:hover{
+    .button:hover {
       color: unset;
     }
   }
 }
 
-.button{
+.button {
   background-color: #5aac44;
   font-weight: 600;
   color: white;
   
 }
 
-.delete{
+.delete {
   margin: 5px 10px 0;
   background: transparent;
 }
 
-.plus-icon{
+.plus-icon {
   margin-right: 7px;
 }
 
-.isDraggingOver-column{
+.isDraggingOver-column {
   background-color: rgba(163, 82, 82, 0.712);
   padding: 4px;
   width: 272px;
 }
 
-.isntDraggingOver{
+.isntDraggingOver {
   background-color: #ebecf0;
   width: 272px;
   min-height: 1px;
 }
 
-.isDragging{
+.isDragging {
   background-color: #0891f3;
 }
 
-.isntDragging{
+.isntDragging {
   background-color: #456c86;
 }
 
-.column-container{
+.column-container {
   display: flex;
   flex-direction: column;
   margin-top: 10px;
   align-items: center;
   padding: 0px;
   margin-right: 10px;
-  .message-header{
+  .message-header {
     width: 100%;
     height: 42px;
     background: #ebecf0;
@@ -116,30 +136,32 @@ section{
     color: #172b4d;
     // color: var(--color-primary);
   }
-  .ticket-container{
+  .ticket-container {
     background: #ebecf0;
   }
 }
 
 
-//Actual ticket on kanban view
-.message-body{
+// TICKET CARD STYLING i.e. tickets on kanban
+
+.message-body {
   color: #172b4d;
   background: #fff;
   border: none;
   width: 256px;
   box-shadow: 0 1px 0 #091e4240;
-  // todoist background
+  // ticket holder background
   // box-shadow: 0 10px 10px #0000001a, 0 6px 3px #0000001f;
 }
 
-// CREATE TICKET
 
-textarea{
+// CREATE TICKET STYLING
+
+textarea {
   height: 80px;
 }
 
-.ticket-button{
+.ticket-button {
   display: flex;
   justify-content: flex-start;
   background-color: #ebecf0;
@@ -151,8 +173,8 @@ textarea{
   color: #172b4db0;
 }
 
-.ticket-form{
-  background-color:#ebecf0;
+.ticket-form {
+  background-color: #ebecf0;
   height: 110px;
   width: 100%;
   display: flex;
@@ -161,37 +183,35 @@ textarea{
   padding: 0;
   border-radius: 0 0 4px;
 
-  .input-container{
+  .input-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    .input{
+    .input {
       height: 66px;
       width: 256px;
       padding-top: 0;
       border: transparent;
       box-shadow: 0 1px 0 #091e4240;
-      
     }
-    ::placeholder{
+    ::placeholder {
       color: #172b4dc7;
       position: relative;
       padding-top: 0;
       top: -9px;
     }
   }
-  .buttons-container{
+  .buttons-container {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     margin: 4px 8px 6px;
-    .button{
+    .button {
       height: 35px;
       padding: 7px 8px;
     }
   }
-  
-  .delete{
+  .delete {
     margin-top: 0;
   }
 }

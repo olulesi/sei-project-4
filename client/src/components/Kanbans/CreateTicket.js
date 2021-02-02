@@ -3,7 +3,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
 
-function CreateTicket({ handleTicketSubmit, newTicketName, setNewTicketName, id }) {
+function CreateTicket({ handleSubmit, newTicketName, setNewTicketName, id }) {
 
   const [newTicket, setnewTicket] = React.useState(false)
   
@@ -15,9 +15,7 @@ function CreateTicket({ handleTicketSubmit, newTicketName, setNewTicketName, id 
     setNewTicketName(e.target.value)
   }
 
-
   return (
-
     <>
       {!newTicket && (
         <button className="button ticket-button" onClick={handleClick}>
@@ -25,7 +23,7 @@ function CreateTicket({ handleTicketSubmit, newTicketName, setNewTicketName, id 
           Add another card</button>
       )}
       {newTicket && (
-        <form className="form ticket-form" name={id} onSubmit={ handleTicketSubmit }>
+        <form className="form ticket-form" name={id} onSubmit={handleSubmit}>
           {/* adding an event listener when the input changes fire handle change function */}
           {/* you put the submit handle on the form not the button cause it is in a form */}
           <div className="input-container">
@@ -43,10 +41,8 @@ function CreateTicket({ handleTicketSubmit, newTicketName, setNewTicketName, id 
           </div>
         </form>
       )}
-      
     </>
   )
-
-
 }
+
 export default CreateTicket
