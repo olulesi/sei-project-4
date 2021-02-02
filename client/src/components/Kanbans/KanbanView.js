@@ -6,13 +6,15 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import TicketCard from './TicketCard'
 import TicketShow from './TicketShow'
 import Avatar from '../common/Avatar'
-import { getKanban, editKanban, findUser, getTicket, editTicket } from '../../lib/api'
+import { getKanban, editKanban, findUser, createColumn, editColumn, deleteColumn,
+  createTicket, getTicket, editTicket, deleteTicket } from '../../lib/api'
 import { isOwner } from '../../lib/auth'
 import useForm from '../../utils/useForm'
+import ColumnHeader from './ColumnHeader'
+import AddNewColumn from './AddNewColumn'
+import AddNewTicket from './AddNewTicket'
 import useErrorAnimation from '../../utils/useErrorAnimation'
 import dragAndDrop from '../../utils/dragAndDrop'
-import AddNewColumn from './AddNewColumn'
-import CreateTicket from './CreateTicket'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearchPlus } from '@fortawesome/free-solid-svg-icons'
@@ -23,7 +25,7 @@ function objectifyColumns(columnsArray) {
   const obj = {}
   const sortedColumns = [...columnsArray].sort((a, b) => a.position - b.position)
   for (const column of sortedColumns) {
-    obj[column.position] = { name: column.name, items: [] }
+    obj[column.position] = { id: column.id, name: column.name, items: [] }
     const sortedTickets = [...column.tickets].sort((a, b) => a.position - b.position)
     for (const ticket of sortedTickets) {
       obj[column.position].items.push({ ...ticket, id: String(ticket.id) })
@@ -33,7 +35,6 @@ function objectifyColumns(columnsArray) {
 }
 
 const updateTicketsAffectedByDND = async (result, newColumns) => {
-  console.log(newColumns)
   if (!result.destination) return
   const requestsArray = []
   let destinationPositionCount = 1
@@ -67,7 +68,6 @@ function KanbanView() {
   const [addMemberError, setAddMemberError] = React.useState(false)
   const { hasErrorAnimationClass, errorAnimation } = useErrorAnimation()
   const [newColumnName, setnewColumnName] = React.useState('')
-  const [newTicketName, setNewTicketName] = React.useState('')
   const { id } = useParams()
 
   React.useEffect(() => {
@@ -87,7 +87,7 @@ function KanbanView() {
     setRerenderSwitch(1 ^ rerenderSwitch)
   }
 
-  const members = kanban ? kanban.members : null
+  const members = kanban ? kanban.members.sort((a,b) => a.id === kanban.owner.id ? -1 : 0) : null
 
   const currentUser = kanban ? kanban.members.find(member => member.id === 1) : null
   // ! const currentUser = kanban ? kanban.members.find(member => isOwner(member.id)) : null
@@ -117,6 +117,82 @@ function KanbanView() {
     }
   }
 
+  const handleColumnCreate = async event => {
+    event.preventDefault()
+    if (!newColumnName) return
+    const newColumnPosition = Object.keys(columns).length + 1
+    try {
+      const { data } = await createColumn({
+        name: newColumnName,
+        position: newColumnPosition,
+        kanban: id
+      })
+      setColumns({
+        ...columns,
+        [newColumnPosition]: {
+          id: data.id,
+          name: newColumnName,
+          items: []
+        }
+      })
+      setnewColumnName('')
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const handleColumnSubmit = async (columnId, position, newName) => {
+    try {
+      const { data } = await editColumn(columnId, {
+        name: newName,
+        position: position,
+        kanban: id
+      })
+      setColumns({
+        ...columns,
+        [position]: {
+          ...columns[position],
+          name: newName
+        }
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const handleColumnDelete = async (id, position) => {
+    try {
+      await deleteColumn(id)
+      const { [position]: _, ...rest } = columns
+      setColumns(rest)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const handleTicketCreate = async (columnId, columnPosition, newTicketName) => {
+    const newTicketPosition = columns[columnPosition].items.length + 1
+    try {
+      const { data } = await createTicket({
+        name: newTicketName,
+        position: newTicketPosition,
+        column: columnId
+      })
+      setColumns({
+        ...columns,
+        [columnPosition]: {
+          ...columns[columnPosition],
+          items: [
+            ...columns[columnPosition].items,
+            { ...data, id: String(data.id), creator: currentUser, tasks: [], comments: [] }
+          ]
+        }
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   const handleTicketShow = async id => {
     try {
       const { data } = await getTicket(id)
@@ -137,41 +213,14 @@ function KanbanView() {
     }
   }
 
-  const handleColumnCreate = e => {
-    e.preventDefault()
-    if (!newColumnName) return
-    const newColumnLength = Object.keys(columns).length + 1
-    const listOfColumns = {
-      ...columns,
-      [newColumnLength]: {
-        name: newColumnName,
-        items: []
-      }
+  const handleTicketDelete = async () => {
+    try {
+      await deleteTicket(formdata.id)
+      setFormdata(null)
+      rerender()
+    } catch (err) {
+      console.log(err)
     }
-    setnewColumnName('')
-    setColumns(listOfColumns)
-    console.log('submitted')
-  }
-
-  const handleTicketCreate = e => {
-    e.preventDefault()
-    const currColumn = e.target.name
-    if (!newTicketName) return
-    console.log(columns[currColumn])
-    console.log(newTicketName)
-    const listOfColumns = {
-      ...columns,
-      [currColumn]: {
-        name: columns[currColumn].name,
-        items: [{
-          name: newTicketName,
-          id: '100'
-        }, ...columns[currColumn].items]
-      }
-    }
-    setNewTicketName('')
-    setColumns(listOfColumns)
-    console.log('submitted')
   }
 
   return (
@@ -226,7 +275,7 @@ function KanbanView() {
         <>
           <section className={`kanban-background-${kanban.background}`}>
             {columns &&
-              <div className="kanBan-container">
+              <div className='kanBan-container'>
                 <DragDropContext
                   onDragEnd={result => {
                     const newColumns = onDragEnd(result, columns, setColumns)
@@ -235,13 +284,15 @@ function KanbanView() {
                 >
                   {Object.entries(columns).map(([id, column]) => {
                     return (
-                      <div className="column-container column is-narrow" key={id}>
-                        <div className="message-header">
-                          <h2>{column.name}</h2>
-                          <span className="pagination-ellipsis">&hellip;</span>
-                        </div>
-
-                        <div className="ticket-container">
+                      <div className='column-container column is-narrow' key={id}>
+                        <ColumnHeader
+                          id={column.id}
+                          position={id}
+                          name={column.name}
+                          handleSubmit={handleColumnSubmit}
+                          handleDelete={handleColumnDelete}
+                        />
+                        <div className='ticket-container'>
                           <Droppable droppableId={id} >
                             {(provided, snapshot) => {
                               return (
@@ -273,10 +324,9 @@ function KanbanView() {
                           </Droppable>
                         </div>
 
-                        <CreateTicket
-                          id={id}
-                          newTicketName={newTicketName}
-                          setNewTicketName={setNewTicketName}
+                        <AddNewTicket
+                          columnId={column.id}
+                          columnPosition={id}
                           handleSubmit={handleTicketCreate}
                           columns={columns}
                         />
@@ -304,6 +354,7 @@ function KanbanView() {
             setFormdata={setFormdata}
             handleChange={handleChange}
             handleSubmit={handleTicketSubmit}
+            handleDelete={handleTicketDelete}
             members={members}
             currentUser={currentUser}
           />

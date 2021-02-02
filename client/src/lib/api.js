@@ -10,6 +10,7 @@ export function headers() {
   }
 }
 
+
 //* AUTH Requests
 
 export function registerUser(formdata) {
@@ -29,16 +30,15 @@ export function editUserProfile(formdata) {
 }
 
 export function findUser(email) {
-  return axios.get(`${baseUrl}/auth/user/${email}`, )
+  return axios.get(`${baseUrl}/auth/user/${email}`)
 }
 
+// export function findUser(email) {
+//   return axios.get(`${baseUrl}/auth/user/${email}`, headers())
+// }
 
 
 // * KANBAN Requests
-
-// export function createKanban(formdata) {
-//   return axios.post(`${baseUrl}/kanbans/`, formdata)
-// }
 
 export function createKanban(formdata) {
   return axios.post(`${baseUrl}/kanbans/`, formdata, headers())
@@ -58,10 +58,6 @@ export function editKanban(id, formdata) {
 
 // export function editKanban(id, formdata) {
 //   return axios.put(`${baseUrl}/kanabans/${id}/`, formdata, headers())
-// }
-
-// export function deleteKanban(id) {
-//   return axios.delete(`${baseUrl}/kanbans/${id}`)
 // }
 
 export function deleteKanban(id) {
@@ -128,46 +124,4 @@ export function deleteTicket(id) {
 
 // export function deleteTicket(id) {
 //   return axios.delete(`${baseUrl}/tickets/${id}/`, headers())
-// }
-
-
-// * COMMENT Requests
-
-export function createComment(formdata) {
-  return axios.post(`${baseUrl}/comments/`, formdata, headers())
-}
-
-export function editComment(id, formdata) {
-  return axios.put(`${baseUrl}/comments/${id}/`, formdata, headers())
-}
-
-export function deleteComment(id) {
-  return axios.delete(`${baseUrl}/comments/${id}`, headers())
-}
-
-
-// * TASK Requests
-
-export function createTask(formdata) {
-  return axios.post(`${baseUrl}/tasks/`, formdata)
-}
-
-// export function createTask(formdata) {
-//   return axios.post(`${baseUrl}/tasks/`, formdata, headers())
-// }
-
-export function editTask(id, formdata) {
-  return axios.put(`${baseUrl}/tasks/${id}/`, formdata)
-}
-
-// export function editTask(id, formdata) {
-//   return axios.put(`${baseUrl}/tasks/${id}/`, formdata, headers())
-// }
-
-export function deleteTask(id) {
-  return axios.delete(`${baseUrl}/tasks/${id}`)
-}
-
-// export function deleteTask(id) {
-//   return axios.delete(`${baseUrl}/tasks/${id}`, headers())
 // }

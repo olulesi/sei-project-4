@@ -11,32 +11,32 @@ function AddNewColumn({ handleSubmit, newColumnName, setnewColumnName }) {
     setnewColumn(!newColumn)
   }
 
-  const handleChange = e => {
-    setnewColumnName(e.target.value)
+  const handleChange = event => {
+    setnewColumnName(event.target.value)
   }
 
   return (
     <>  
       {!newColumn && (
-        <button className="button front" onClick={handleClick}>
-          <FontAwesomeIcon className="plus-icon" icon={faPlus}/>
-          Add another List
+        <button className='button front' onClick={handleClick}>
+          <FontAwesomeIcon className='plus-icon' icon={faPlus}/>
+          Add another column
         </button>
       )}
       {newColumn && (
-        <form className="addNewColumn-form" onSubmit={ handleSubmit }>
+        <form className='addNewColumn-form' onSubmit={ handleSubmit }>
           <div>
             <input
-              className="input"
+              className='input'
               onChange={handleChange}
-              placeholder="Enter list title..."
+              placeholder='Column name...'
               value={newColumnName}
             />
           </div>
           <div>
-            <button className="button" >Add List</button>
-            <FontAwesomeIcon onClick={handleClick} className="delete" icon={faTimes} />
-            {/* <button onClick={handleClick} className="delete is-medium"></button> */}
+            <button className='button' >Add List</button>
+            <FontAwesomeIcon onClick={handleClick} className='delete' icon={faTimes} />
+            {/* <button onClick={handleClick} className='delete is-medium'></button> */}
           </div>
         </form>
       )}
