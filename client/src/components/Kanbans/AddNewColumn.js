@@ -1,5 +1,8 @@
 import React from 'react'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
+
 function AddNewColumn({ handleSubmit, newColumnName, setnewColumnName }) {
 
   const [newColumn, setnewColumn] = React.useState(false)
@@ -15,21 +18,22 @@ function AddNewColumn({ handleSubmit, newColumnName, setnewColumnName }) {
   return (
     <>  
       {!newColumn && (
-        <button className="button front column is-narrow column-container" onClick={handleClick}>Add another List</button>
+        <button className="button front" onClick={handleClick}><FontAwesomeIcon className="plus-icon" icon={faPlus} />Add another List</button>
       )}
       {newColumn && (
-        <form className="form column-form add-list column is-narrow " onSubmit={ handleSubmit }>
+        <form className="addNewColumn-form" onSubmit={ handleSubmit }>
           <div>
             <input
               className="input"
               onChange={handleChange}
-              placeholder="Enter List Title ..."
+              placeholder="Enter list title..."
               value={newColumnName}
             />
           </div>
           <div>
-            <button className="button" >Add</button>
-            <button onClick={handleClick} className="delete is-medium"></button>
+            <button className="button" >Add List</button>
+            <FontAwesomeIcon onClick={handleClick} className="delete" icon={faTimes} />
+            {/* <button onClick={handleClick} className="delete is-medium"></button> */}
           </div>
         </form>
       )}

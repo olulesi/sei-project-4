@@ -112,6 +112,10 @@
 
 // NEW KANBAN MODEL 
 
+.kanban-background{
+  border-radius: 10px;
+}
+
 .control-background{
   list-style-type: none;
   padding: 0;
@@ -158,31 +162,4 @@
   border-radius: 10px;
 }
 
-.kanban-background-0{
-  background: url('https://images.pexels.com/photos/21261/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-  background-size: cover;
-  background-position: center;
-  border-radius: 10px;
-  
-}
-.kanban-background-1{
-  background: url('https://images.pexels.com/photos/1666021/pexels-photo-1666021.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-  background-size: cover;
-  background-position: center;
-  border-radius: 10px;
-  
-}
-.kanban-background-2{
-  background: url('https://images.pexels.com/photos/1165991/pexels-photo-1165991.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-  background-size: cover;
-  background-position: center;
-  border-radius: 10px;
-  
-}
-.kanban-background-3{
-  background: url('https://images.pexels.com/photos/4388593/pexels-photo-4388593.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-  background-size: cover;
-  background-position: center;
-  border-radius: 10px;
-  
-}
+

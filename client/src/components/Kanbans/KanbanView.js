@@ -125,15 +125,8 @@ function KanbanView() {
                           <h2>{column.name}</h2>
                           <span className="pagination-ellipsis">&hellip;</span>
                         </div>
-                        <CreateTicket
-                          id={id}
-                          newTicketName={newTicketName}
-                          setNewTicketName={setNewTicketName}
-                          handleTicketSubmit={handleTicketSubmit}
-                          columns={columns}
-                        />
 
-                        <div>
+                        <div className="ticket-container">
                           <Droppable droppableId={id} >
                             {(provided, snapshot) => {
                               return (
@@ -154,9 +147,8 @@ function KanbanView() {
                                               style={{
                                                 userSelect: 'none',
                                                 padding: 16,
-                                                margin: '0 0 8px 0',
+                                                margin: '0px auto 8px auto',
                                                 minHeight: '50px',
-                                                color: 'white',
                                                 ...provided.draggableProps.style
                                               }}
                                               className={`message-body ${snapshot.isDraggingOver ? 'isDragging' : 'isntDragging'}`}>
@@ -174,6 +166,13 @@ function KanbanView() {
                             }}
                           </Droppable>
                         </div>
+                        <CreateTicket
+                          id={id}
+                          newTicketName={newTicketName}
+                          setNewTicketName={setNewTicketName}
+                          handleTicketSubmit={handleTicketSubmit}
+                          columns={columns}
+                        />
                       </div>
                     )
                   })}
