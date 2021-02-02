@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@creativebulma/bulma-tooltip": "^1.2.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-regular-svg-icons": "^5.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "axios": "^0.21.1",
@@ -13,9 +15,11 @@
     "node-sass": "^4.14.1",
     "react": "^17.0.1",
     "react-beautiful-dnd": "^13.0.0",
+    "react-datetime-picker": "^3.0.5",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "react-select": "^4.0.2",
     "semantic-ui-react": "^2.0.3"
   },
   "scripts": {

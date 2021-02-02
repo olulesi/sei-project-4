@@ -4,6 +4,7 @@
   "pk": 1,
   "fields": {
     "name": "Project One",
+    "background": 0,
     "owner": 1,
     "members": []
   }

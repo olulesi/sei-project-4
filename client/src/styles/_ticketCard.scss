@@ -1,0 +1,82 @@
+.ticket-card {
+  user-select: none;
+  min-height: 50px;
+  padding: 16px;
+  border-radius: 5px;
+  color: white;
+  &.has-top-icons.has-bottom-icons {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    
+  }
+  &.has-top-icons:not(.has-bottom-icons),
+    &.has-bottom-icons:not(.has-top-icons) {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  div {
+    display: flex;
+    align-items: center;
+    &.name-wrapper {
+      justify-content: space-between;
+      p {
+        margin-top: 4px;
+        margin-bottom: 4px;
+      }
+      button {
+        background: rgba(0,0,0,.15);
+        border: none;
+        border-radius: 3px;
+        padding: 3px 3px 5px 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $light;
+        cursor: pointer;
+        visibility: hidden;
+        &:hover {
+          background: rgba(0,0,0,.3);
+        }
+      }
+    }
+    &.icons-wrapper {
+      align-items: flex-start;
+      > div {
+        height: 18px;
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+        .icon-before-something {
+          margin-right: 4px;
+        }
+        span {
+          font-size: 12px;
+        }
+      }
+    }
+    &.avatars-container {
+      max-width: 50px;
+      min-width: 50px;
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+      .avatar-container {
+        border: 2px solid #456c86;
+      }
+      .ellipsis {
+        position: relative;
+        left: 97px;
+        top: 6px;
+        font-size: 14px;
+      }
+    }
+    &.icons-avatars-wrapper {
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+  &.hovered {
+    button {
+      visibility: visible !important;
+    }
+  }
+}

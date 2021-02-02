@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
+import Avatar from '../common/Avatar'
 import ImageUploadField from '../common/ImageUploadField'
 import { registerUser } from '../../lib/api'
 import useForm from '../../utils/useForm'
@@ -10,12 +11,12 @@ import useErrorAnimation from '../../utils/useErrorAnimation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faEnvelope, faLock, faExclamationTriangle, faCheck } from '@fortawesome/free-solid-svg-icons'
 
-const initialize = string => {
+export const initialize = string => {
   if (!string) return
   return string.trim().split(/ +/).map(item => item[0].toUpperCase()).join('')
 }
 
-const genericErrorMessage = 'This field may not be blank.'
+export const genericErrorMessage = 'This field may not be blank.'
 
 function Register() {
 
@@ -55,15 +56,11 @@ function Register() {
         <div className='form-box ui form error'>
           <form onSubmit={handleSubmit}>
             <div className='field avatar-field'>
-              <div className='avatar-container'>
-                {formdata.avatar ?
-                  <img src={formdata.avatar} className='avatar' />
-                  :
-                  <p className='initials'>
-                    {initialize(formdata.fullName)}
-                  </p>
-                }
-              </div>
+              <Avatar 
+                size='big'
+                avatar={formdata.avatar}
+                fullName={formdata.fullName}
+              />
             </div>
 
             <div className='field'>

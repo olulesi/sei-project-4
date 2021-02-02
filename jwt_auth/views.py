@@ -2,13 +2,13 @@ from datetime import datetime, timedelta
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.exceptions import PermissionDenied
+from rest_framework.exceptions import PermissionDenied, NotFound
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import get_user_model
 from django.conf import settings
 import jwt
 
-from .serializers.common import UserSerializer
+from .serializers.common import UserSerializer, NestedUserSerializer
 from .serializers.populated import PopulatedUserSerializer
 
 User = get_user_model()
@@ -62,3 +62,15 @@ class ProfileView(APIView):
         current_user = User.objects.get(pk=request.user.id)
         current_user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class UserView(APIView):
+
+    # ! permission_classes = (IsAuthenticated, )
+
+    def get(self, request, email):
+        try:
+            user = User.objects.get(email=email)
+        except:
+            raise NotFound(detail='User Not Found')
+        serialized_user = NestedUserSerializer(user)
+        return Response(serialized_user.data, status=status.HTTP_200_OK)

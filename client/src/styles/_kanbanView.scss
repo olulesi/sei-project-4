@@ -1,45 +1,57 @@
+.members-avatars-container {
+  width: 300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  .avatar-container {
+    border: 3px solid white;
+  }
+}
+
+.add-member {
+  width: 250px;
+  margin: 0 auto;
+}
+
 .kanBan-container {
   display: flex;
   justify-content: center;
-  height: 100vh;
+  height: calc(100vh - 52px);
 }
 
-.isDraggingOver-column{
+.isDraggingOver-column {
   background-color: rgba(163, 82, 82, 0.712);
   padding: 4px;
   width: 250px;
   min-height: 500px;
 }
 
-.isntDraggingOver{
+.isntDraggingOver {
   background-color: #e8e8e8;
   padding: 4px;
   width: 250px;
   min-height: 500px;
 }
 
-.isDragging{
+.isDragging {
   background-color: #0891f3;
 }
 
-.isntDragging{
+.isntDragging {
   background-color: #456c86;
 }
 
-.column-container{
+.column-container {
   display: flex;
   flex-direction: column;
   margin-top: 100px;
   align-items: center;
-  .message-header{
+  .message-header {
     width: 100%;
     padding: 0.5em 1em;
   }
-  div{
+  div {
     margin: 0px;
   }
-}
-
-.message-body{
-  border: none;
 }
