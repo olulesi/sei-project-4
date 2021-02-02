@@ -17,6 +17,7 @@ function TicketShow({ formdata, setFormdata, handleChange, handleSubmit, members
     handleChange({ target: { name: 'holders', value } })
   }
 
+  console.log(formdata)
   const selectOptions = members.filter(member => {
     return !holders.find(holder => holder.id === member.id)
   }).map(member => {

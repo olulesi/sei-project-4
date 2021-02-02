@@ -11,6 +11,8 @@ import { isOwner } from '../../lib/auth'
 import useForm from '../../utils/useForm'
 import useErrorAnimation from '../../utils/useErrorAnimation'
 import dragAndDrop from '../../utils/dragAndDrop'
+import AddNewColumn from './AddNewColumn'
+import CreateTicket from './CreateTicket'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearchPlus } from '@fortawesome/free-solid-svg-icons'
@@ -24,7 +26,7 @@ function objectifyColumns(columnsArray) {
     obj[column.position] = { name: column.name, items: [] }
     const sortedTickets = [...column.tickets].sort((a, b) => a.position - b.position)
     for (const ticket of sortedTickets) {
-      obj[column.position].items.push({ ... ticket, id: String(ticket.id) })
+      obj[column.position].items.push({ ...ticket, id: String(ticket.id) })
     }
   }
   return obj
@@ -64,6 +66,8 @@ function KanbanView() {
   const [addMemberEmail, setAddMemberEmail] = React.useState('')
   const [addMemberError, setAddMemberError] = React.useState(false)
   const { hasErrorAnimationClass, errorAnimation } = useErrorAnimation()
+  const [newColumnName, setnewColumnName] = React.useState('')
+  const [newTicketName, setNewTicketName] = React.useState('')
   const { id } = useParams()
 
   React.useEffect(() => {
@@ -122,7 +126,7 @@ function KanbanView() {
     }
   }
 
-  const handleSubmit = async event => {
+  const handleTicketSubmit = async event => {
     event.preventDefault()
     try {
       await editTicket(formdata.id, formdata)
@@ -131,6 +135,43 @@ function KanbanView() {
     } catch (err) {
       console.log(err)
     }
+  }
+
+  const handleColumnCreate = e => {
+    e.preventDefault()
+    if (!newColumnName) return
+    const newColumnLength = Object.keys(columns).length + 1
+    const listOfColumns = {
+      ...columns,
+      [newColumnLength]: {
+        name: newColumnName,
+        items: []
+      }
+    }
+    setnewColumnName('')
+    setColumns(listOfColumns)
+    console.log('submitted')
+  }
+
+  const handleTicketCreate = e => {
+    e.preventDefault()
+    const currColumn = e.target.name
+    if (!newTicketName) return
+    console.log(columns[currColumn])
+    console.log(newTicketName)
+    const listOfColumns = {
+      ...columns,
+      [currColumn]: {
+        name: columns[currColumn].name,
+        items: [{
+          name: newTicketName,
+          id: '100'
+        }, ...columns[currColumn].items]
+      }
+    }
+    setNewTicketName('')
+    setColumns(listOfColumns)
+    console.log('submitted')
   }
 
   return (
@@ -180,58 +221,79 @@ function KanbanView() {
           </div>
         </form>
       </div>
+      
+      {kanban ?
+        <>
+          <section className={`kanban-background-${kanban.background}`}>
+            {columns &&
+              <div className="kanBan-container">
+                <DragDropContext
+                  onDragEnd={result => {
+                    const newColumns = onDragEnd(result, columns, setColumns)
+                    updateTicketsAffectedByDND(result, newColumns)
+                  }}
+                >
+                  {Object.entries(columns).map(([id, column]) => {
+                    return (
+                      <div className="column-container column is-narrow" key={id}>
+                        <div className="message-header">
+                          <h2>{column.name}</h2>
+                          <span className="pagination-ellipsis">&hellip;</span>
+                        </div>
 
-      {columns &&
-        <div className="kanBan-container">
-          <DragDropContext
-            onDragEnd={result => {
-              const newColumns = onDragEnd(result, columns, setColumns)
-              updateTicketsAffectedByDND(result, newColumns)
-            }}
-          >
-            {Object.entries(columns).map(([id, column]) => {
-              return (
-                <div className="column-container column is-narrow" key={id}>
-                  <div className="message-header">
-                    <h2>{column.name}</h2>
-                    <span className="pagination-ellipsis">&hellip;</span>
-                  </div>
-                  <div>
-                    <Droppable  droppableId={id} >
-                      {(provided, snapshot) => {
-                        return (
-                          <div 
-                            {...provided.droppableProps}
-                            ref={provided.innerRef}
-                            className={`${snapshot.isDraggingOver ? 'isDraggingOver-column' : 'isntDraggingOver'}`}>
-                            {column.items.map((item, index) => {
+                        <div className="ticket-container">
+                          <Droppable droppableId={id} >
+                            {(provided, snapshot) => {
                               return (
-                              // that index is used to tell us what we are dragging from and what we are dragging to
-                                <Draggable key={item.id} draggableId={item.id} index={index}>
-                                  {(provided, snapshot) => {
+                                <div
+                                  {...provided.droppableProps}
+                                  ref={provided.innerRef}
+                                  className={`${snapshot.isDraggingOver ? 'isDraggingOver-column' : 'isntDraggingOver'}`}>
+                                  {column.items.map((item, index) => {
                                     return (
-                                      <TicketCard
-                                        provided={provided}
-                                        snapshot={snapshot}
-                                        item={item}
-                                        handleTicketShow={handleTicketShow}
-                                      />
+                                      // index used to tell us where we are dragging from and where we are dragging to
+                                      <Draggable key={item.id} draggableId={item.id} index={index}>
+                                        {(provided, snapshot) => {
+                                          return (
+                                            <TicketCard
+                                              provided={provided}
+                                              snapshot={snapshot}
+                                              item={item}
+                                              handleTicketShow={handleTicketShow}
+                                            />
+                                          )
+                                        }}
+                                      </Draggable>
                                     )
-                                  }}
-                                </Draggable>
+                                  })}
+                                  {provided.placeholder}
+                                </div>
                               )
-                            })}
-                            {provided.placeholder}
-                          </div>
-                        )
-                      }}
-                    </Droppable>
-                  </div>
-                </div>
-              )
-            })}
-          </DragDropContext>
-        </div>
+                            }}
+                          </Droppable>
+                        </div>
+
+                        <CreateTicket
+                          id={id}
+                          newTicketName={newTicketName}
+                          setNewTicketName={setNewTicketName}
+                          handleSubmit={handleTicketCreate}
+                          columns={columns}
+                        />
+                      </div>
+                    )
+                  })}
+                </DragDropContext>
+                <AddNewColumn
+                  handleSubmit={handleColumnCreate}
+                  newColumnName={newColumnName}
+                  setnewColumnName={setnewColumnName}/>
+              </div>
+            }
+          </section>
+        </>
+        :
+        <div>🇳🇬</div>
       }
 
       {formdata &&
@@ -241,7 +303,7 @@ function KanbanView() {
             formdata={formdata}
             setFormdata={setFormdata}
             handleChange={handleChange}
-            handleSubmit={handleSubmit}
+            handleSubmit={handleTicketSubmit}
             members={members}
             currentUser={currentUser}
           />

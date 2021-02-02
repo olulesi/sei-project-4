@@ -1,0 +1,165 @@
+.profile-header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  .initials{
+    font-weight: 700;
+  }
+  .full-name{
+    margin-top: 20px;
+    font-weight: 700;
+    font-size: 40px;
+  }
+  .email{
+    font-size: 20px;
+  }
+  .kanban-stats{
+    display: flex;
+    margin-top: 10px;
+    .kanbansOwnerOf{
+      font-size: 20px;
+      font-weight: bold;
+      margin-right: 5px;
+    }
+  }
+}
+
+.profile-nav{
+  margin: 30px 90px;
+  .profile-icon{
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.profile-kanbans{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: auto;
+  .kanban-header{
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.kanban-container{
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.kanban-card{
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  .card-header-title{
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    padding: 0;
+    color: white;
+  }
+}
+.kanban-background{
+  width: 235px;
+  height: 157px;
+  position: relative;
+  filter: sepia(0) hue-rotate(90deg) brightness(70%);
+  .header-title{
+    position: absolute;
+    top: 8px;
+    left: 16px;
+  }
+}
+
+.kanban-background:hover{
+  // scale up 
+  filter: sepia(0) hue-rotate(0deg) brightness(100%);
+}
+
+.create-new{
+  position: absolute;
+  width: 140px;
+  top: 50%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+}
+
+.remove-kanban{
+  position: absolute;
+  top: 8px;
+  right: 16px;
+}
+
+.navbar-item{
+  div{
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  div:hover{
+    background-color: #e8e8e8;
+  }
+}
+
+
+// NEW KANBAN MODEL 
+
+.kanban-background{
+  border-radius: 10px;
+}
+
+.control-background{
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  .background-option{
+    position: relative;
+    margin:0 5px 0 0;
+    width: 40px;
+    height: 40px;
+  }
+  label, input{
+    display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    cursor:pointer; 
+  }
+  label{
+    padding:5px;
+    cursor:pointer;
+    z-index:90;
+  }
+  input:hover {
+    //maybe a scale animation 
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+  }
+}
+
+.control-background input[type="radio"] {
+  opacity:0.0011;
+  z-index:100;
+  width: 40px;
+  height: 40px;
+  border-radius: 0;
+
+
+}
+
+.control-background input[type="radio"]:checked + label {
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+  background-position:center top;
+  border-radius: 10px;
+}
+
+

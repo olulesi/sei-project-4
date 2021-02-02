@@ -4,7 +4,7 @@ import { getToken } from './auth'
 
 const baseUrl = '/api'
 
-function headers() {
+export function headers() {
   return {
     headers: { Authorization: `Bearer ${getToken()}` }
   }
@@ -24,20 +24,25 @@ export function getUserProfile() {
   return axios.get(`${baseUrl}/auth/profile/`, headers())
 }
 
+export function editUserProfile(formdata) {
+  return axios.put(`${baseUrl}/auth/profile/`, formdata, headers())
+}
+
 export function findUser(email) {
   return axios.get(`${baseUrl}/auth/user/${email}`, )
 }
 
 
+
 // * KANBAN Requests
 
-export function createKanban(formdata) {
-  return axios.post(`${baseUrl}/kanbans/`, formdata)
-}
-
 // export function createKanban(formdata) {
-//   return axios.post(`${baseUrl}/kanbans/`, formdata, headers())
+//   return axios.post(`${baseUrl}/kanbans/`, formdata)
 // }
+
+export function createKanban(formdata) {
+  return axios.post(`${baseUrl}/kanbans/`, formdata, headers())
+}
 
 export function getKanban(id) {
   return axios.get(`${baseUrl}/kanbans/${id}/`)
@@ -55,13 +60,13 @@ export function editKanban(id, formdata) {
 //   return axios.put(`${baseUrl}/kanabans/${id}/`, formdata, headers())
 // }
 
-export function deleteKanban(id) {
-  return axios.delete(`${baseUrl}/kanbans/${id}`)
-}
-
 // export function deleteKanban(id) {
-//   return axios.delete(`${baseUrl}/kanbans/${id}`, headers())
+//   return axios.delete(`${baseUrl}/kanbans/${id}`)
 // }
+
+export function deleteKanban(id) {
+  return axios.delete(`${baseUrl}/kanbans/${id}`, headers())
+}
 
 
 // * COLUMN Requests

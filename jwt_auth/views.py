@@ -8,7 +8,7 @@ from django.contrib.auth import get_user_model
 from django.conf import settings
 import jwt
 
-from .serializers.common import UserSerializer, NestedUserSerializer
+from .serializers.common import UserSerializer, NestedUserSerializer, UserIdEmailLookupSerializer
 from .serializers.populated import PopulatedUserSerializer
 
 User = get_user_model()
@@ -52,7 +52,7 @@ class ProfileView(APIView):
 
     def put(self, request):
         current_user = User.objects.get(pk=request.user.id)
-        edited_current_user = UserSerializer(current_user, data=request.data)
+        edited_current_user = NestedUserSerializer(current_user, data=request.data)
         if edited_current_user.is_valid():
             edited_current_user.save()
             return Response(edited_current_user.data, status=status.HTTP_202_ACCEPTED)
@@ -67,10 +67,10 @@ class UserView(APIView):
 
     # ! permission_classes = (IsAuthenticated, )
 
-    def get(self, request, email):
+    def get(self, _request, email):
         try:
             user = User.objects.get(email=email)
         except:
             raise NotFound(detail='User Not Found')
-        serialized_user = NestedUserSerializer(user)
+        serialized_user = UserIdEmailLookupSerializer(user)
         return Response(serialized_user.data, status=status.HTTP_200_OK)

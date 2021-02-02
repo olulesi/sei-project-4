@@ -2,12 +2,23 @@
 
 $input-icon-active-color: hsl(0, 0%, 86%); // $grey-lighter
 
+// @import 'normalize.css';
 @import '~bulma/bulma.sass';
 @import '@creativebulma/bulma-tooltip';
 @import '_registerLogin.scss';
+@import '_nav.scss';
 @import '_kanbanView.scss';
 @import '_ticketCard.scss';
 @import '_ticketShow.scss';
+@import '_profile.scss';
+// @import '_reset.scss';
+
+:root {
+  --color-primary: #f8d0b0; // main titles buttons and avatar bk
+  --color-secondary: #78b0a0; // font looking for dark
+  --color-additional: #587850; // container background
+  --color-main: #587850; // main background
+}
 
 .danger-color {
   color: $danger;
@@ -20,6 +31,7 @@ $input-icon-active-color: hsl(0, 0%, 86%); // $grey-lighter
 .avatar-container {
   border-radius: 50%;
   background-color: $grey-lighter;
+  // background-color: var(--color-primary);
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -49,6 +61,9 @@ $input-icon-active-color: hsl(0, 0%, 86%); // $grey-lighter
     width: 100%;
     height: auto;
   }
+  // p.initials {
+  //   color: var(--color-secondary);
+  // }
 }
 
 .error-animation {
@@ -75,3 +90,36 @@ $input-icon-active-color: hsl(0, 0%, 86%); // $grey-lighter
     transform: translate3d(4px, 0, 0);
   }
 }
+
+// Backgrounds for profile and kanban view 
+
+.kanban-background-0 {
+  background: url('https://images.pexels.com/photos/21261/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-size: cover;
+  background-position: center;
+}
+
+.kanban-background-1 {
+  background: url('https://images.pexels.com/photos/1666021/pexels-photo-1666021.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-size: cover;
+  background-position: center;
+}
+
+.kanban-background-2 {
+  background: url('https://images.pexels.com/photos/1165991/pexels-photo-1165991.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-size: cover;
+  background-position: center;
+}
+
+.kanban-background-3 {
+  background: url('https://images.pexels.com/photos/4388593/pexels-photo-4388593.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-size: cover;
+  background-position: center;
+}
+
+//scroll bbar styling best with a theme
+// ::-webkit-scrollbar {
+// //   height: 8px;             
+// //   width: 8px;
+// //   border: 1px solid #d5d5d5;
+// // }

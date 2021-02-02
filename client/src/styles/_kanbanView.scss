@@ -20,18 +20,97 @@
   height: calc(100vh - 52px);
 }
 
+section {
+  width: 100vw;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0;
+  height: 100vh;
+}
+
+.column.is-narrow {
+  width: 272px;
+}
+
+.kanBan-container {
+  display: flex;
+  max-width: 95%;
+  max-height: 100%;
+  margin-left: 10px;
+  overflow-x: scroll;
+
+  // CREATE COLUMN STYLING
+  .front {
+    display: flex;
+    margin-top: 10px;
+    width: 280px;
+    background: #0000002c;
+    border: none;
+    justify-content: flex-start;
+  }
+  .addNewColumn-form {
+    background-color: #e8e8e8;
+    margin-top: 10px;
+    border-radius: 5px;
+    height: 87px;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+    div {
+      display: flex;
+      align-items: center;
+      .input {
+        height: 36px;
+        box-shadow: 0 0 0 2px #0079bf;
+        border:none;
+        border-radius: 2px;
+        
+      }
+    }
+    ::placeholder {
+      color: #172b4dc7;
+    }
+    .button {
+      margin-top: 5px;
+      height: 35px;
+      width: 81px;
+      // color: var(--color-primary);
+      // color: var(--color-secondary);
+    }
+    .button:hover {
+      color: unset;
+    }
+  }
+}
+
+.button {
+  background-color: #5aac44;
+  font-weight: 600;
+  color: white;
+  
+}
+
+.delete {
+  margin: 5px 10px 0;
+  background: transparent;
+}
+
+.plus-icon {
+  margin-right: 7px;
+}
+
 .isDraggingOver-column {
   background-color: rgba(163, 82, 82, 0.712);
   padding: 4px;
-  width: 250px;
-  min-height: 500px;
+  width: 272px;
 }
 
 .isntDraggingOver {
-  background-color: #e8e8e8;
-  padding: 4px;
-  width: 250px;
-  min-height: 500px;
+  background-color: #ebecf0;
+  width: 272px;
+  min-height: 1px;
 }
 
 .isDragging {
@@ -45,13 +124,94 @@
 .column-container {
   display: flex;
   flex-direction: column;
-  margin-top: 100px;
+  margin-top: 10px;
   align-items: center;
+  padding: 0px;
+  margin-right: 10px;
   .message-header {
     width: 100%;
+    height: 42px;
+    background: #ebecf0;
     padding: 0.5em 1em;
+    color: #172b4d;
+    // color: var(--color-primary);
   }
-  div {
-    margin: 0px;
+  .ticket-container {
+    background: #ebecf0;
+  }
+}
+
+
+// TICKET CARD STYLING i.e. tickets on kanban
+
+.message-body {
+  color: #172b4d;
+  background: #fff;
+  border: none;
+  width: 256px;
+  box-shadow: 0 1px 0 #091e4240;
+  // ticket holder background
+  // box-shadow: 0 10px 10px #0000001a, 0 6px 3px #0000001f;
+}
+
+
+// CREATE TICKET STYLING
+
+textarea {
+  height: 80px;
+}
+
+.ticket-button {
+  display: flex;
+  justify-content: flex-start;
+  background-color: #ebecf0;
+  width: 100%;
+  border-color: none;
+  border-radius: 0 0 4px 4px;
+  border: none;
+  z-index: 2;
+  color: #172b4db0;
+}
+
+.ticket-form {
+  background-color: #ebecf0;
+  height: 110px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0;
+  border-radius: 0 0 4px;
+
+  .input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .input {
+      height: 66px;
+      width: 256px;
+      padding-top: 0;
+      border: transparent;
+      box-shadow: 0 1px 0 #091e4240;
+    }
+    ::placeholder {
+      color: #172b4dc7;
+      position: relative;
+      padding-top: 0;
+      top: -9px;
+    }
+  }
+  .buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 4px 8px 6px;
+    .button {
+      height: 35px;
+      padding: 7px 8px;
+    }
+  }
+  .delete {
+    margin-top: 0;
   }
 }

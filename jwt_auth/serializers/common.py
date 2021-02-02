@@ -36,3 +36,9 @@ class NestedUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'full_name', 'role', 'avatar')
+
+class UserIdEmailLookupSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('id', 'email')
