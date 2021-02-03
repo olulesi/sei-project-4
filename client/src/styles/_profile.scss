@@ -6,6 +6,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: slide-in 1.3s ease;
+  
   .initials{
     font-weight: 700;
   }
@@ -30,6 +32,7 @@
 
 .profile-nav{
   margin: 0 90px;
+  animation: slide-in 1.4s ease;
   .profile-icon{
     height: 20px;
     width: 20px;
@@ -43,6 +46,7 @@
   margin: auto;
   .kanban-header{
     display: flex;
+    animation: fly-in 1.9s ease;
   }
   .title{
     margin-left: 15px;
@@ -54,6 +58,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  animation: slide-in 1.4s ease;
   // align-items: center;
   .create-new-board-card{
     .kanban-background{
@@ -78,6 +83,7 @@
   margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
+  animation: fly-in 1.6s ease;
 }
 
 .kanban-card{

@@ -53,7 +53,9 @@ function Register() {
   return (
     <>
       <MainNav page={'register'}/>
-      <section className={`register-form-container ${hasErrorAnimationClass ? 'error-animation' : ''}`}>
+      <section 
+        className={`register-form-container ${hasErrorAnimationClass ? 'error-animation' : ''}`}
+      >
         <h1>Sign Up</h1>
         <div className='form-box ui form error'>
           <form onSubmit={handleSubmit}>

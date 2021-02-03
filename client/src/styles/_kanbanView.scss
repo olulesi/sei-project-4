@@ -9,6 +9,7 @@
   display: flex;
   justify-content: flex-start;
   padding-top: 50px;
+  animation: fade-in 1.3s ease;
 }
 
 .column.is-narrow {
@@ -102,10 +103,12 @@
 
 .isDragging {
   background-color: #0891f3;
+  margin: 0 8px 8px;
 }
 
 .isntDragging {
   background-color: #456c86;
+  margin: 0 8px 8px;
 }
 
 .column-container {

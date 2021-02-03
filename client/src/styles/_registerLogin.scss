@@ -6,6 +6,8 @@
   align-items: center;
   // height: 60vh;
   margin: 100px 0 0 0;
+  animation: slide-in 1s ease;
+
 }
 
 .container-for-login {
@@ -50,6 +52,7 @@ border: 1px solid #e6e6e6;
   margin: 0;
   width: 600px;
   margin-left: 300px;
+  animation: slide-in 1s ease;
   h1 {
     font-size: 40px;
     font-family: 'Comfortaa', cursive;

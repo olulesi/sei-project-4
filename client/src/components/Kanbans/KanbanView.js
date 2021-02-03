@@ -3,9 +3,11 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import { motion } from 'framer-motion'
 
 import TicketCard from './TicketCard'
 import TicketShow from './TicketShow'
+
 // import Avatar from '../common/Avatar'
 import { getKanban, editKanban, findUser, createColumn, editColumn, deleteColumn,
   createTicket, getTicket, editTicket, deleteTicket } from '../../lib/api'
@@ -228,7 +230,7 @@ function KanbanView() {
         <KanbanNav
           kanbanName={kanban.name} 
           members={members} 
-          addMemberEmail={addMemberError}
+          addMemberEmail={addMemberEmail}
           handleAddMemberEmailChange={handleAddMemberEmailChange} 
           handleAddMember={handleAddMember} 
           addMemberError={addMemberError}
@@ -240,7 +242,11 @@ function KanbanView() {
         <>
           <section className={`kanban-page kanban-background-${kanban.background}`}>
             {columns &&
-              <div className='kanBan-container'>
+              <motion.div 
+                className='kanBan-container'
+                animate={{ x: 0 }}
+                initial={{ x: 1900 }}
+                transition={{ type: 'spring', stiffness: 30, ease: 'easeOut', duration: 0.5 }}>
                 <DragDropContext
                   onDragEnd={result => {
                     const newColumns = onDragEnd(result, columns, setColumns)
@@ -303,7 +309,7 @@ function KanbanView() {
                   handleSubmit={handleColumnCreate}
                   newColumnName={newColumnName}
                   setnewColumnName={setnewColumnName}/>
-              </div>
+              </motion.div>
             }
           </section>
         </>

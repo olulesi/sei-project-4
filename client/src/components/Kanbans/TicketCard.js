@@ -29,7 +29,7 @@ function TicketCard({ provided, snapshot, item, handleTicketShow }) {
       {...provided.dragHandleProps}
       ref={provided.innerRef}
       style={{
-        margin: '0 auto 8px',
+        margin: '0 8px 8px',
         ...provided.draggableProps.style
       }}
       className={

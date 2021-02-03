@@ -38,12 +38,12 @@ function HomeNav({ page }) {
                 </>
                 :
                 <>
-                  <span className="navbar-item-log-out">
+                  <span className="navbar-item-log-out-home-page">
                     <button onClick={handleLogout} to="/login" className="button log-out-main-navbar">
                       <span>Log Out</span>
                     </button>
                   </span>
-                  <div className="user-icon-container">
+                  <div className="user-icon-container-home-page">
                     <Link to={`/profile/${getUserId()}`}>
                       <span className='icon user-icon-main-navbar'>
                         <FontAwesomeIcon icon={faUserCircle}/>
