@@ -228,7 +228,7 @@ function KanbanView() {
         <KanbanNav
           kanbanName={kanban.name} 
           members={members} 
-          addMemberEmail={addMemberError}
+          addMemberEmail={addMemberEmail}
           handleAddMemberEmailChange={handleAddMemberEmailChange} 
           handleAddMember={handleAddMember} 
           addMemberError={addMemberError}
