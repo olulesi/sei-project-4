@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable eqeqeq */
 import React from 'react'
 import DateTimePicker from 'react-datetime-picker'
 import Select from 'react-select'
+import Tippy from '@tippyjs/react'
 
 import Avatar from '../common/Avatar'
 
@@ -93,6 +95,10 @@ function TicketShow({ formdata, setFormdata, handleChange, handleSubmit, handleD
   const [hoveredTask, setHoveredTask] = React.useState(null)
   const [newTaskIsHovered, setNewTaskIsHovered] = React.useState(false)
   const [newTaskIsFocused, setNewTaskIsFocused] = React.useState(false)
+  const [popoverVisible, setPopoverVisible] = React.useState(false)
+
+  const showPopover = () => setPopoverVisible(true)
+  const hidePopover = () => setPopoverVisible(false)
 
   return (
     <form onSubmit={handleSubmit} className='modal-card'>
@@ -161,7 +167,7 @@ function TicketShow({ formdata, setFormdata, handleChange, handleSubmit, handleD
                         <div>
                           <button
                             type='button'
-                            className='delete is-small'
+                            className='delete is-small delete-task'
                             onClick={() => deleteTask(index)}
                           ></button>
                         </div>
@@ -338,9 +344,28 @@ function TicketShow({ formdata, setFormdata, handleChange, handleSubmit, handleD
 
       <footer className='modal-card-foot'>
         <button type='submit' className='button is-success'>Save Changes</button>
-        <button type='button' className='button' onClick={handleDelete}>
-            Delete
-        </button>
+        <Tippy
+          visible={popoverVisible}
+          interactive={true}
+          onClickOutside={hidePopover}
+          placement='top'
+          animation='scale'
+          theme='light'
+          maxWidth={180}
+          content={
+            <>
+              <p>Are you sure you want to <span>delete</span> this ticket?</p>
+              <div className='buttons are-small'>
+                <button className='button is-danger' onClick={handleDelete}>Yes</button>
+                <button type='button' className='button' onClick={hidePopover}>No</button>
+              </div>
+            </>
+          }
+        >
+          <button type='button' className='button is-danger' onClick={showPopover}>
+              Delete
+          </button>
+        </Tippy>
       </footer>
     </form>
   )

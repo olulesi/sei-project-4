@@ -63,8 +63,8 @@ function TicketCard({ provided, snapshot, item, handleTicketShow }) {
       </div>
       <div className='name-wrapper'>
         <p>{name}</p>
-        <button>
-          <FontAwesomeIcon icon={faEdit} onClick={() => handleTicketShow(item.id)}/>
+        <button onClick={() => handleTicketShow(item.id)}>
+          <FontAwesomeIcon icon={faEdit}/>
         </button>
       </div>
       <div className='icons-avatars-wrapper'>

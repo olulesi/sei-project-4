@@ -3,8 +3,10 @@
 $input-icon-active-color: hsl(0, 0%, 86%); // $grey-lighter
 
 // @import 'normalize.css';
+// @import '_reset.scss';
+
 @import '~bulma/bulma.sass';
-@import '@creativebulma/bulma-tooltip';
+
 @import '_registerLogin.scss';
 @import '_nav.scss';
 @import '_kanbanView.scss';
@@ -15,6 +17,11 @@ $input-icon-active-color: hsl(0, 0%, 86%); // $grey-lighter
 @import '_editProfile.scss';
 @import '_homePage.scss';
 // @import '_reset.scss';
+
+@import '@creativebulma/bulma-tooltip';
+@import 'tippy.js/dist/tippy.css';
+@import 'tippy.js/themes/light.css';
+@import 'tippy.js/animations/scale.css';
 
 :root {
   --color-primary: #f8d0b0; // main titles buttons and avatar bk

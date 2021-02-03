@@ -1,18 +1,22 @@
-/* eslint-disable no-unused-vars */
 import React from 'react'
+import Tippy from '@tippyjs/react'
 
 import ColumnHeaderInput from './ColumnHeaderInput'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
-function ColumnHeader({ id, position, name, handleSubmit, handleDelete }) {
+function ColumnHeader({ id, position, name, numberOfTickets, handleSubmit, handleDelete }) {
 
   const node = React.useRef()
 
   const [isHovered, setIsHovered] = React.useState(false)
   const [isEditable, setIsEditable] = React.useState(false)
   const [newName, setNewName] = React.useState(name)
+  const [popoverVisible, setPopoverVisible] = React.useState(false)
+
+  const showPopover = () => setPopoverVisible(true)
+  const hidePopover = () => setPopoverVisible(false)
 
   const handleChange = event => {
     setNewName(event.target.value)
@@ -32,7 +36,7 @@ function ColumnHeader({ id, position, name, handleSubmit, handleDelete }) {
 
   return (
     <form
-      className={`message-header ${isHovered ? 'hovered' : ''}`}
+      className={`message-header ${isHovered || popoverVisible ? 'hovered' : ''}`}
       ref={node}
       onSubmit={handleSubmitPlus}
       onMouseEnter={() => setIsHovered(true)}
@@ -42,12 +46,43 @@ function ColumnHeader({ id, position, name, handleSubmit, handleDelete }) {
         <>
           <h2>{name}</h2>
           <div className='edit-and-delete-buttons'>
-            <button type='button'>
-              <FontAwesomeIcon icon={faEdit} onClick={() => setIsEditable(true)}/>
+            <button type='button' onClick={() => setIsEditable(true)}>
+              <FontAwesomeIcon icon={faEdit}/>
             </button>
-            <button type='button'>
-              <FontAwesomeIcon icon={faTrashAlt} onClick={() => handleDelete(id, position)}/>
-            </button>
+            <Tippy
+              visible={popoverVisible}
+              interactive={true}
+              onClickOutside={hidePopover}
+              placement='bottom'
+              animation='scale'
+              theme='light'
+              maxWidth={180}
+              content={
+                <>
+                  <p>Delete column <span>{name}</span>
+                    {numberOfTickets ?
+                      ` along with its ${numberOfTickets} ticket${numberOfTickets > 1 ? 's' : ''}?` 
+                      : 
+                      '?'
+                    }
+                  </p>
+                  <div className='buttons are-small'>
+                    <button className='button popover-button is-danger' onClick={() => handleDelete(id, position)}>
+                      Yes
+                    </button>
+                    <button className='button popover-button' onClick={hidePopover}>No</button>
+                  </div>
+                </>
+              }
+            >
+              <button
+                type='button'
+                onClick={showPopover}
+                style={popoverVisible ? { background: 'rgba(0,0,0,.2)' } : {}}
+              >
+                <FontAwesomeIcon icon={faTrashAlt}/>
+              </button>
+            </Tippy>
           </div>
         </>
         :

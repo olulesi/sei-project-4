@@ -41,35 +41,14 @@ function KanbanNav({
               </span>
             </Link>
           </div>
-          <div className='add-member'>
-            <form
-              onSubmit={handleAddMember}
-              className={`${hasErrorAnimationClass ? 'error-animation' : ''}`}
-            >
-              <div className='field'>
-                <div className='control has-icons-left'>
-                  <input
-                    type='text'
-                    className={`add-member-input input ${addMemberError ? 'is-danger' : ''}`}
-                    onChange={handleAddMemberEmailChange}
-                    value={addMemberEmail}
-                    placeholder='Add member by email...'
-                  />
-                  <span className='icon is-small is-left'>
-                    <FontAwesomeIcon icon={faSearchPlus}/>
-                  </span>
-                </div>
-              </div>
-            </form>
-          </div>
-          <span className="nav-item-project-name">
-            <div className="project-name-container">
-              <span>{kanbanName}</span>
-            </div>
-          </span>
         </div>
         <div id="navbarBasicExample" className="navbar-menu">
-          <div className="navbar-start">
+          <div className="navbar-start kanban-navbar-start">
+            <span className="nav-item-project-name">
+              <div className="project-name-container">
+                <span>{kanbanName}</span>
+              </div>
+            </span>
             <span className="navbar-item-avatars">
               <div className='members-avatars-container'>
                 {members.map((member, index) => (
@@ -93,6 +72,27 @@ function KanbanNav({
                 ))}
               </div>
             </span>
+            <div className='add-member'>
+              <form
+                onSubmit={handleAddMember}
+                className={`${hasErrorAnimationClass ? 'error-animation' : ''}`}
+              >
+                <div className='field'>
+                  <div className='control has-icons-left'>
+                    <input
+                      type='text'
+                      className={`add-member-input input ${addMemberError ? 'is-danger' : ''}`}
+                      onChange={handleAddMemberEmailChange}
+                      value={addMemberEmail}
+                      placeholder='Add member by email...'
+                    />
+                    <span className='icon is-small is-left'>
+                      <FontAwesomeIcon icon={faSearchPlus}/>
+                    </span>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
           <div className="navbar-end">
             <span className="navbar-item-log-out">

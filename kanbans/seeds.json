@@ -6,7 +6,11 @@
     "name": "Project One",
     "background": 1,
     "owner": 1,
-    "members": [1]
+    "members": [
+      1,
+      2,
+      3
+    ]
   }
 },
 {

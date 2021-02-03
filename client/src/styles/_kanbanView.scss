@@ -59,7 +59,7 @@
     .button {
       margin-top: 5px;
       height: 35px;
-      width: 81px;
+      padding: 7px 8px;
       // color: var(--color-primary);
       // color: var(--color-secondary);
     }
@@ -80,7 +80,7 @@
   color: white;
 }
 
-.delete {
+.delete:not(.delete-task):not(.add-task) {
   margin: 5px 10px 0;
   background: transparent;
 }
@@ -90,8 +90,7 @@
 }
 
 .isDraggingOver-column {
-  background-color: rgba(163, 82, 82, 0.712);
-  padding: 4px;
+  background-color: #ebecf0;
   width: 272px;
 }
 

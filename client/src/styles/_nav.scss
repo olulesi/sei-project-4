@@ -1,15 +1,15 @@
-.kanban-navbar{
+.kanban-navbar {
   background: rgba(0,0,0,.32);
   width: 100%;
   position: fixed;
 }
 
 //on the kanban view file but affects the nav 
-.kanban-page{
+.kanban-page {
   padding-top: 55px;
 }
 
-.main-navbar{
+.main-navbar {
   background:#fdfdfd;
   width: 100%;
   height: 50px;
@@ -21,16 +21,20 @@
   margin-left: 7px;
 }
 
-.navbar-item-register{
+.navbar-item-log-out {
+  margin-left: 0;
+}
+
+.navbar-item-register {
   margin-right: 7px;
 }
 
-.stream-icon, .user-icon, .user-icon-main-navbar{
+.stream-icon, .user-icon, .user-icon-main-navbar {
   height: 40px;
   width: 40px;
   border-radius: 5px;
   background: #FFFFFF4D;
-  .svg-inline--fa.fa-w-16{
+  .svg-inline--fa.fa-w-16 {
     height: 38px;
     width: 25px;
   }
@@ -57,12 +61,12 @@
   }
 }
 
-.user-icon, .user-icon-main-navbar{
+.user-icon, .user-icon-main-navbar {
   margin-top: 5px;
   margin-right: 7px;
 }
 
-.dice-icon, .dice-icon-main-navbar{
+.dice-icon, .dice-icon-main-navbar {
   height: 40px;
   width: 40px;
   border-radius: 5px;
@@ -73,36 +77,44 @@
   }
 }
 
-.dice-icon{
+.dice-icon {
   background: #FFFFFF4D;
 }
 
-.add-member-input{
+.kanban-navbar-start {
+  width: 100%;
+  margin-left: 7px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-member-input {
   background: #FFFFFF4D;
   border: transparent;
   box-shadow: none;
 }
 
-.add-member-input:hover{
+.add-member-input:hover {
   background:#ffffff65;
 }
-.add-member-input:focus{
+
+.add-member-input:focus {
   background:#ffffff65;
   border-color: none;
   box-shadow: none;
 }
 
-.nav-item-project-name{
+.nav-item-project-name {
   display: flex;
   align-items: center;
-  .project-name-container{
+  .project-name-container {
     color: #ffffff8f;
     font-weight: 700;
     font-size: 20px;
   }
 }
 
-.navbar-item-avatars{
+.navbar-item-avatars {
   margin-left: 50px;
   display: flex;
   align-items: center;
@@ -119,7 +131,7 @@
   }
 }
 
-.navbar-medium{
+.navbar-medium {
   width: 40px;
   height: 40px;
 }
@@ -128,23 +140,23 @@
   width: 225px;
 }
 
-.register-page-button{
+.register-page-button {
   margin-right: 7px;
 }
 
-.log-out-kanban-navbar{
+.log-out-kanban-navbar {
   background: #FFFFFF4D;
   border: none;
 }
-.log-out-kanban-navbar:hover{
+.log-out-kanban-navbar:hover {
   background: #ffffff65;
 }
 
-.log-in-main-navbar, .register-main-navbar, .dice-icon-main-navbar, .log-out-main-navbar, .user-icon-main-navbar{
+.log-in-main-navbar, .register-main-navbar, .dice-icon-main-navbar, .log-out-main-navbar, .user-icon-main-navbar {
   background: #FFFFFF4D;
   border: none;
 }
 
-.log-in-main-navbar:hover, .register-main-navbar:hover, .dice-icon-main-navbar:hover, .log-out-main-navbar:hover, .user-icon-main-navbar:hover{
+.log-in-main-navbar:hover, .register-main-navbar:hover, .dice-icon-main-navbar:hover, .log-out-main-navbar:hover, .user-icon-main-navbar:hover {
   background: #2525254d;
 }
