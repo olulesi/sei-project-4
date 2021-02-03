@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
 import Avatar from '../common/Avatar'
+import MainNav from '../common/navBars/MainNav'
 import ImageUploadField from '../common/ImageUploadField'
 import { registerUser } from '../../lib/api'
 import useForm from '../../utils/useForm'
@@ -51,6 +52,7 @@ function Register() {
   
   return (
     <>
+      <MainNav page={'register'}/>
       <section className={`register-form-container ${hasErrorAnimationClass ? 'error-animation' : ''}`}>
         <h1>Sign Up</h1>
         <div className='form-box ui form error'>

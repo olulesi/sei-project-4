@@ -112,7 +112,7 @@ function NewKanbanModal({ handleClick }) {
           </div>
         </div>
         <div className="create-new-kanban-buttons">
-          <button className="button" >Create Kanban</button>
+          <button className="button create-kanban-button" >Create Kanban</button>
         </div>
       </form>
     </>

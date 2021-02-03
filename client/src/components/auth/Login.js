@@ -1,5 +1,6 @@
 import React from 'react'
 import { useHistory, Link } from 'react-router-dom'
+import MainNav from '../common/navBars/MainNav'
 
 import { loginUser } from '../../lib/api'
 import { setToken } from '../../lib/auth'
@@ -34,6 +35,7 @@ function Login() {
 
   return (
     <>
+      <MainNav page={'login'}/>
       <section className={`login-form-container ${hasErrorAnimationClass ? 'error-animation' : ''}`}>
         <div className='container-for-login'>
           <h1>Log In</h1>

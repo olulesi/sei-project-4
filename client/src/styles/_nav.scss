@@ -1,7 +1,129 @@
+.kanban-navbar{
+  background: rgba(0,0,0,.32);
+  width: 100%;
+  position: fixed;
+}
 
-.is-medium{
+//on the kanban view file but affects the nav 
+.kanban-page{
+  padding-top: 55px;
+}
+
+.main-navbar{
+  background:#364f6b;
+  width: 100%;
+  height: 50px;
+}
+
+.stream-icon-container, .dice-icon-container, .add-member, .user-icon-container, .navbar-item-log-out, .navbar-item-log-in, .navbar-item-register{
+  display: flex;
+  align-items: center;
+  margin-left: 7px;
+}
+
+.navbar-item-register{
+  margin-right: 7px;
+}
+
+.stream-icon, .user-icon, .user-icon-main-navbar{
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  background: #FFFFFF4D;
   .svg-inline--fa.fa-w-16{
-    height: 43px;
-    width: 2em;
+    height: 38px;
+    width: 25px;
   }
+}
+
+.user-icon, .user-icon-main-navbar{
+  margin-top: 5px;
+  margin-right: 7px;
+}
+
+.dice-icon, .dice-icon-main-navbar{
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  margin-top: 5px;
+  .svg-inline--fa.fa-w-15{
+    height: 38px;
+    width: 25px;
+  }
+}
+
+.dice-icon{
+  background: #FFFFFF4D;
+}
+
+.add-member-input{
+  background: #FFFFFF4D;
+  border: transparent;
+  box-shadow: none;
+}
+
+.add-member-input:hover{
+  background:#ffffff65;
+}
+.add-member-input:focus{
+  background:#ffffff65;
+  border-color: none;
+  box-shadow: none;
+}
+
+.nav-item-project-name{
+  display: flex;
+  align-items: center;
+  .project-name-container{
+    color: #ffffff8f;
+    font-weight: 700;
+    font-size: 20px;
+  }
+}
+
+.navbar-item-avatars{
+  margin-left: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.members-avatars-container {
+  width: 300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  .avatar-container {
+    box-shadow: 0 1px 7px #091e4240;
+  }
+}
+
+.navbar-medium{
+  width: 40px;
+  height: 40px;
+}
+
+.add-member {
+  width: 225px;
+}
+
+.register-page-button{
+  margin-right: 7px;
+}
+
+.log-out-kanban-navbar{
+  background: #FFFFFF4D;
+  border: none;
+}
+.log-out-kanban-navbar:hover{
+  background: #ffffff65;
+}
+
+.log-in-main-navbar, .register-main-navbar, .dice-icon-main-navbar, .log-out-main-navbar, .user-icon-main-navbar{
+  background: #FFFFFF4D;
+  border: none;
+}
+
+.log-in-main-navbar:hover, .register-main-navbar:hover, .dice-icon-main-navbar:hover, .log-out-main-navbar:hover, .user-icon-main-navbar:hover{
+  background:#ffffff65;
 }

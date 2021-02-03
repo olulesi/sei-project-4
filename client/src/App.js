@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
@@ -15,7 +16,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Nav />
+        {/* <Nav /> */}
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/kanbans/:id' component={KanbanView} />

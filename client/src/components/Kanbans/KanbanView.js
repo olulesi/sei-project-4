@@ -1,21 +1,17 @@
-/* eslint-disable no-unused-vars */
+
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 import TicketCard from './TicketCard'
 import TicketShow from './TicketShow'
-import Avatar from '../common/Avatar'
+import KanbanNav from '../common/navBars/KanbanNav'
 import { getKanban, editKanban, findUser, getTicket, editTicket } from '../../lib/api'
-import { isOwner } from '../../lib/auth'
 import useForm from '../../utils/useForm'
 import useErrorAnimation from '../../utils/useErrorAnimation'
 import dragAndDrop from '../../utils/dragAndDrop'
 import AddNewColumn from './AddNewColumn'
 import CreateTicket from './CreateTicket'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearchPlus } from '@fortawesome/free-solid-svg-icons'
 
 const onDragEnd = dragAndDrop()
 
@@ -176,55 +172,21 @@ function KanbanView() {
 
   return (
     <>
-      <div className='members-avatars-container'>
-        {kanban &&
-          kanban.members.map((member, index) => (
-            <div key={member.id}>
-              <Avatar
-                size='medium'
-                avatar={member.avatar}
-                fullName={member.fullName}
-                hasTooltip={true}
-                style={{
-                  position: 'relative',
-                  left: `${members.length % 2 === 1 ?
-                    15 * (index - Math.floor(members.length / 2))
-                    :
-                    15 * (index - ((members.length - 1) / 2))
-                  }px`,
-                  zIndex: `${members.length - index}`
-                }}
-              />
-            </div>
-          ))
-        }
-      </div>
-
-      <div className='add-member'>
-        <form
-          onSubmit={handleAddMember}
-          className={`${hasErrorAnimationClass ? 'error-animation' : ''}`}
-        >
-          <div className='field'>
-            <div className='control has-icons-left'>
-              <input
-                type='text'
-                className={`input ${addMemberError ? 'is-danger' : ''}`}
-                onChange={handleAddMemberEmailChange}
-                value={addMemberEmail}
-                placeholder='Add member by email...'
-              />
-              <span className='icon is-small is-left'>
-                <FontAwesomeIcon icon={faSearchPlus}/>
-              </span>
-            </div>
-          </div>
-        </form>
-      </div>
+      { kanban &&
+        <KanbanNav
+          kanbanName={kanban.name} 
+          members={members} 
+          addMemberEmail={addMemberError}
+          handleAddMemberEmailChange={handleAddMemberEmailChange} 
+          handleAddMember={handleAddMember} 
+          addMemberError={addMemberError}
+          hasErrorAnimationClass={hasErrorAnimationClass}
+        />
+      }
       
       {kanban ?
         <>
-          <section className={`kanban-background-${kanban.background}`}>
+          <section className={`kanban-page kanban-background-${kanban.background}`}>
             {columns &&
               <div className="kanBan-container">
                 <DragDropContext

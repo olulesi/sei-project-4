@@ -6,6 +6,7 @@ import unpackErrors from '../../utils/unpackErrors'
 import { getUserProfile, editUserProfile } from '../../lib/api'
 import { getUserId } from '../../lib/auth'
 import useErrorAnimation from '../../utils/useErrorAnimation'
+import MainNav from '../common/navBars/MainNav'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faEnvelope, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
@@ -53,6 +54,7 @@ function EditProfile() {
 
   return (
     <>
+      <MainNav page={'editProfile'}/>
       <section className={`register-form-container ${hasErrorAnimationClass ? 'error-animation' : ''}`}>
         <h1>Edit Profile</h1>
         <div className='form-box ui form error'>
