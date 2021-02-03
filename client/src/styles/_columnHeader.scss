@@ -1,0 +1,79 @@
+.message-header {
+  width: 100%;
+  height: 42px;
+  background: #ebecf0;
+  padding: 0.5em 1em;
+  color: #172b4d;
+  // color: var(--color-primary);
+  > div {
+    display: flex;
+    &.edit-and-delete-buttons {
+      button {
+        background: rgba(0,0,0,.1);
+        border: none;
+        border-radius: 3px;
+        &:first-child {
+          margin-right: 4px;
+          padding: 3px 3px 5px 5px;
+        }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $light;
+        cursor: pointer;
+        visibility: hidden;
+        &:hover {
+          background: rgba(0,0,0,.2);
+        }
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+    &.save-and-close-buttons {
+      > div {
+        height: 21.33px;
+        &:first-child {
+          width: 23px;
+          margin-right: 4px;
+          > * {
+            color: $success;
+            &:hover {
+              color: hsl(141, 71%, 42%)
+            }
+          }
+        }
+        &:last-child {
+          width: 23.66px;
+          > * {
+            color: $danger;
+            &:hover {
+              color: hsl(348, 100%, 45%)
+            }
+          }
+        }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        > * {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  &.hovered {
+    button {
+      visibility: visible !important;
+    }
+  }
+  input {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    font-size: 16px;
+    margin-right: 6px;
+  }
+}

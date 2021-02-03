@@ -8,7 +8,7 @@ import Avatar from '../common/Avatar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFlag } from '@fortawesome/free-solid-svg-icons'
 
-function TicketShow({ formdata, setFormdata, handleChange, handleSubmit, members, currentUser }) {
+function TicketShow({ formdata, setFormdata, handleChange, handleSubmit, handleDelete, members, currentUser }) {
 
   const { name, description, priority, deadline, tasks, comments, holders } = formdata
 
@@ -17,7 +17,6 @@ function TicketShow({ formdata, setFormdata, handleChange, handleSubmit, members
     handleChange({ target: { name: 'holders', value } })
   }
 
-  console.log(formdata)
   const selectOptions = members.filter(member => {
     return !holders.find(holder => holder.id === member.id)
   }).map(member => {
@@ -339,12 +338,8 @@ function TicketShow({ formdata, setFormdata, handleChange, handleSubmit, members
 
       <footer className='modal-card-foot'>
         <button type='submit' className='button is-success'>Save Changes</button>
-        <button
-          type='button'
-          className='button'
-          onClick={() => setFormdata(null)}
-        >
-            Cancel
+        <button type='button' className='button' onClick={handleDelete}>
+            Delete
         </button>
       </footer>
     </form>

@@ -9,7 +9,7 @@ from .serializers.common import ColumnSerializer
 
 class ColumnListView(APIView):
 
-    permission_classes = (IsAuthenticated, )
+    # ! permission_classes = (IsAuthenticated, )
 
     def post(self, request):
         column_to_create = ColumnSerializer(data=request.data)
@@ -20,7 +20,7 @@ class ColumnListView(APIView):
 
 class ColumnDetailView(APIView):
 
-    permission_classes = (IsAuthenticated, )
+    # ! permission_classes = (IsAuthenticated, )
 
     def get_column(self, pk):
         try:
