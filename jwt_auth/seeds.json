@@ -4,7 +4,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$216000$UOofmYymoz9O$NMx2pfNRjLXcivRatKFm2ltPAiTg+4vshU9zEtbUV2U=",
-    "last_login": "2021-01-29T10:40:32.974Z",
+    "last_login": "2021-02-03T09:14:00.343Z",
     "is_superuser": true,
     "username": "isaac",
     "first_name": "",
@@ -16,6 +16,90 @@
     "email": "isaac@email.com",
     "role": "",
     "avatar": "https://res.cloudinary.com/dqcj07p8r/image/upload/v1612092111/image_upload_test/Profile_Pic_sdlpmf.jpg",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pass",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "tobi@email.com",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-02-03T09:49:08Z",
+    "full_name": "Tobi Lesi",
+    "email": "tobi@email.com",
+    "role": "",
+    "avatar": "https://res.cloudinary.com/dqcj07p8r/image/upload/v1612361829/image_upload_test/T0351JZQ0-U01DNSAE140-ac297fb8aa35-512_hdq3uy.jpg",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pass",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "jack@email.com",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-02-03T14:22:03Z",
+    "full_name": "Jack May",
+    "email": "jack@email.com",
+    "role": "",
+    "avatar": "https://res.cloudinary.com/dqcj07p8r/image/upload/v1612362097/image_upload_test/T0351JZQ0-UF7T00ANN-9e0ffcda6506-512_tzw3gr.jpg",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pass",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "char@email.com",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-02-03T14:22:37Z",
+    "full_name": "Charlotte Morgan",
+    "email": "char@email.com",
+    "role": "",
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pass",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "noa@email.com",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-02-03T14:23:08Z",
+    "full_name": "Noa Filosof",
+    "email": "noa@email.com",
+    "role": "",
+    "avatar": "https://res.cloudinary.com/dqcj07p8r/image/upload/v1612362616/image_upload_test/T0351JZQ0-U0146JFMKHT-3579a56bb173-512_vlsidw.png",
     "groups": [],
     "user_permissions": []
   }

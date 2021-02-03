@@ -29,7 +29,7 @@ function TicketCard({ provided, snapshot, item, handleTicketShow }) {
       {...provided.dragHandleProps}
       ref={provided.innerRef}
       style={{
-        margin: '0 auto 8px',
+        margin: '0 8px 8px',
         ...provided.draggableProps.style
       }}
       className={
@@ -63,8 +63,8 @@ function TicketCard({ provided, snapshot, item, handleTicketShow }) {
       </div>
       <div className='name-wrapper'>
         <p>{name}</p>
-        <button>
-          <FontAwesomeIcon icon={faEdit} onClick={() => handleTicketShow(item.id)}/>
+        <button onClick={() => handleTicketShow(item.id)}>
+          <FontAwesomeIcon icon={faEdit}/>
         </button>
       </div>
       <div className='icons-avatars-wrapper'>

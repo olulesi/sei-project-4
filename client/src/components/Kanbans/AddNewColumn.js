@@ -3,16 +3,17 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
 
-function AddNewColumn({ handleSubmit, newColumnName, setnewColumnName }) {
+function AddNewColumn({ handleSubmit, newColumnName, setNewColumnName }) {
 
-  const [newColumn, setnewColumn] = React.useState(false)
+  const [newColumn, setNewColumn] = React.useState(false)
 
   const handleClick = () => {
-    setnewColumn(!newColumn)
+    setNewColumn(!newColumn)
+    setNewColumnName('')
   }
 
   const handleChange = event => {
-    setnewColumnName(event.target.value)
+    setNewColumnName(event.target.value)
   }
 
   return (
@@ -31,12 +32,12 @@ function AddNewColumn({ handleSubmit, newColumnName, setnewColumnName }) {
               onChange={handleChange}
               placeholder='Column name...'
               value={newColumnName}
+              autoFocus
             />
           </div>
           <div>
             <button className='button add-list-button' >Add Column</button>
-            <FontAwesomeIcon onClick={handleClick} className='delete' icon={faTimes} />
-            {/* <button onClick={handleClick} className='delete is-medium'></button> */}
+            <FontAwesomeIcon onClick={handleClick} className='delete' icon={faTimes}/>
           </div>
         </form>
       )}

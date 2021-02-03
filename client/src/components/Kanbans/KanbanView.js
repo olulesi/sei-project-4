@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
@@ -40,7 +39,7 @@ const updateTicketsAffectedByDND = async (result, newColumns) => {
   for (const ticket of newColumns[result.destination.droppableId].items) {
     requestsArray.push(editTicket(ticket.id, {
       ...ticket,
-      column: result.destination.droppableId,
+      column: newColumns[result.destination.droppableId].id,
       position: destinationPositionCount
     }))
     destinationPositionCount++
@@ -49,7 +48,7 @@ const updateTicketsAffectedByDND = async (result, newColumns) => {
   for (const ticket of newColumns[result.source.droppableId].items) {
     requestsArray.push(editTicket(ticket.id, {
       ...ticket,
-      column: result.source.droppableId,
+      column: newColumns[result.source.droppableId].id,
       position: sourcePositionCount
     }))
     sourcePositionCount++
@@ -66,7 +65,7 @@ function KanbanView() {
   const [addMemberEmail, setAddMemberEmail] = React.useState('')
   const [addMemberError, setAddMemberError] = React.useState(false)
   const { hasErrorAnimationClass, errorAnimation } = useErrorAnimation()
-  const [newColumnName, setnewColumnName] = React.useState('')
+  const [newColumnName, setNewColumnName] = React.useState('')
   const { id } = useParams()
 
   React.useEffect(() => {
@@ -134,7 +133,7 @@ function KanbanView() {
           items: []
         }
       })
-      setnewColumnName('')
+      setNewColumnName('')
     } catch (err) {
       console.log(err)
     }
@@ -254,6 +253,7 @@ function KanbanView() {
                           id={column.id}
                           position={id}
                           name={column.name}
+                          numberOfTickets={column.items.length}
                           handleSubmit={handleColumnSubmit}
                           handleDelete={handleColumnDelete}
                         />
@@ -302,7 +302,7 @@ function KanbanView() {
                 <AddNewColumn
                   handleSubmit={handleColumnCreate}
                   newColumnName={newColumnName}
-                  setnewColumnName={setnewColumnName}/>
+                  setNewColumnName={setNewColumnName}/>
               </div>
             }
           </section>

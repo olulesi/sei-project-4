@@ -17,7 +17,6 @@ function KanbanNav({
   addMemberError,
   hasErrorAnimationClass }) {
 
-  console.log(members)
   const isLoggedIn = isAuthenticated()
   const history = useHistory()
 
