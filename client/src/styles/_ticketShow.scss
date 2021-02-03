@@ -1,22 +1,43 @@
+
+.modal-card-head, .modal-card-foot, .modal-card-body{
+  border-bottom: none;
+  background: #f4f5f7;
+  border-top: none;
+}
+
+.modal-card-head{
+  padding: 15px 20px;
+}
+
+// .modal-card-body{
+//   display: flex;
+//   flex-direction: column;
+// }
+
+
 .ticket-name {
   width: 100%;
-  height: 24px;
+  height: 32px;
   margin-right: 20px;
   input {
     width: 100%;
     height: 100%;
-    padding: 0;
+    padding-left: 9px;
     border: none;
     box-shadow: none;
     background: transparent;
     font-size: 24px;
+    font-weight: 700;
+    color: #172b4d;
   }
   p {
     position: relative;
     top: -2px;
   }
-  &:focus {
+  .input:focus {
     outline: none;
+    box-shadow: 0 0 0 2px #0079bf;
+    background: white;
   }
 }
 

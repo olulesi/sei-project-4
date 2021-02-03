@@ -1,33 +1,18 @@
 import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
-import { getUserProfile, headers } from '../../../lib/api'
 import { isAuthenticated, logout, getUserId } from '../../../lib/auth'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle, faDiceD20 } from '@fortawesome/free-solid-svg-icons'
 
 function HomeNav({ page }) {
-
-  const [profile, setProfile] = React.useState({})
+ 
   const isLoggedIn = isAuthenticated()
   const history = useHistory()
 
-  React.useEffect(() => {
-    const getProfile = async () => {
-      try {
-        const { data } = await getUserProfile(headers())
-        setProfile(data)
-        console.log(profile)
-      } catch (err) {
-        console.log(err)
-        // setHasError(true)
-      }
-    }
-    getProfile()
-  }, [])
-
   const handleLogout = () => {
+    
     logout()
     history.push('/')
   }

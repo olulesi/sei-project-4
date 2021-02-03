@@ -34,7 +34,7 @@ function AddNewColumn({ handleSubmit, newColumnName, setnewColumnName }) {
             />
           </div>
           <div>
-            <button className='button' >Add List</button>
+            <button className='button add-list-button' >Add List</button>
             <FontAwesomeIcon onClick={handleClick} className='delete' icon={faTimes} />
             {/* <button onClick={handleClick} className='delete is-medium'></button> */}
           </div>

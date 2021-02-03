@@ -24,7 +24,6 @@ function KanbanNav({
     logout()
     history.push('/')
   }
-  console.log(kanbanName)
   return (
       
     <>

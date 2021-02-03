@@ -6,7 +6,7 @@ import Select from 'react-select'
 import Avatar from '../common/Avatar'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFlag } from '@fortawesome/free-solid-svg-icons'
+import { faFlag, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 function TicketShow({ formdata, setFormdata, handleChange, handleSubmit, handleDelete, members, currentUser }) {
 
@@ -99,7 +99,7 @@ function TicketShow({ formdata, setFormdata, handleChange, handleSubmit, handleD
       <header className='modal-card-head'>
         <div className='ticket-name'>
           <input
-            className='input'
+            className='edit-ticket-name input'
             name='name'
             onChange={handleChange}
             value={name}
@@ -111,12 +111,12 @@ function TicketShow({ formdata, setFormdata, handleChange, handleSubmit, handleD
             <p className='help is-danger'>Max. 50 characters</p>
           }
         </div>
-        <button
+        <FontAwesomeIcon 
+          onClick={() => setFormdata(null)} 
           type='button'
-          className='delete'
           aria-label='close'
-          onClick={() => setFormdata(null)}
-        ></button>
+          className='delete'
+          icon={faTimes} />
       </header>
 
       <section className='modal-card-body'>

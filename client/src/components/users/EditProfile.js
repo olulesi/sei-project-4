@@ -1,6 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
+import Avatar from '../common/Avatar'
 import useForm from '../../utils/useForm'
 import unpackErrors from '../../utils/unpackErrors'
 import { getUserProfile, editUserProfile } from '../../lib/api'
@@ -10,11 +11,6 @@ import MainNav from '../common/navBars/MainNav'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faEnvelope, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
-
-const initialize = string => {
-  if (!string) return
-  return string.trim().split(/ +/).map(item => item[0].toUpperCase()).join('')
-}
 
 const genericErrorMessage = 'This field may not be blank.'
 
@@ -61,13 +57,11 @@ function EditProfile() {
           <form onSubmit={handleSubmit}>
             <div className='field avatar-field'>
               <div className='avatar-container'>
-                {formdata.avatar ?
-                  <img src={formdata.avatar} className='avatar' />
-                  :
-                  <p className='initials'>
-                    {initialize(formdata.fullName)}
-                  </p>
-                }
+                <Avatar 
+                  size='big'
+                  avatar={formdata.avatar}
+                  fullName={formdata.fullName}
+                />
               </div>
             </div>
 

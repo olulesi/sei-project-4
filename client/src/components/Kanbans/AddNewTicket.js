@@ -49,7 +49,7 @@ function AddNewTicket({ columnId, columnPosition, handleSubmit }) {
             />
           </div>
           <div className='buttons-container'>
-            <button className='button' >Add Ticket</button>
+            <button className='button add-ticket-button' >Add Ticket</button>
             <FontAwesomeIcon onClick={handleClick} className='delete' icon={faTimes} />
             {/* <button onClick={handleClick} className='delete is-medium'></button> */}
           </div>

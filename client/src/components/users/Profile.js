@@ -1,18 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import Avatar from '../common/Avatar'
 import { getUserProfile, headers, deleteKanban } from '../../lib/api'
 import NewKanbanModal from '../kanbans/NewKanbanModal'
 import MainNav from '../common/navBars/MainNav'
 
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faUserAlt } from '@fortawesome/free-solid-svg-icons'
-
-const initialize = string => {
-  if (!string) return
-  return string.trim().split(/ +/).map(item => item[0].toUpperCase()).join('')
-}
 
 function Profile() {
 
@@ -54,13 +49,11 @@ function Profile() {
         <div className="profile-header">
           <div className="avatar-field">
             <div className='avatar-container'>
-              {profile.avatar ?
-                <img src={profile.avatar} className='avatar' />
-                :
-                <p className='initials'>
-                  {initialize(profile.fullName)}
-                </p>
-              }
+              <Avatar 
+                size='big'
+                avatar={profile.avatar}
+                fullName={profile.fullName}
+              />
             </div>
           </div>
           <p className="full-name">{profile.fullName}</p>

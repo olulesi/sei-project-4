@@ -1,9 +1,13 @@
 .ticket-card {
+  color: #172b4d;
+  background: #fff;
+  border: none;
+  width: 256px;
+  box-shadow: 0 1px 0 #091e4240;
   user-select: none;
-  min-height: 50px;
-  padding: 16px;
+  min-height: 38px;
+  padding: 5px 16px;
   border-radius: 5px;
-  color: white;
   &.has-top-icons.has-bottom-icons {
     padding-top: 8px;
     padding-bottom: 8px;
@@ -11,8 +15,8 @@
   }
   &.has-top-icons:not(.has-bottom-icons),
     &.has-bottom-icons:not(.has-top-icons) {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
   div {
     display: flex;
@@ -20,8 +24,9 @@
     &.name-wrapper {
       justify-content: space-between;
       p {
-        margin-top: 4px;
+        margin-top: 2px;
         margin-bottom: 4px;
+        font-size: 16px;
       }
       button {
         background: rgba(0,0,0,.15);
