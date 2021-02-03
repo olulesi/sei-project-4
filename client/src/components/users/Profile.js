@@ -6,7 +6,7 @@ import NewKanbanModal from '../kanbans/NewKanbanModal'
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPen } from '@fortawesome/free-solid-svg-icons'
+import { faPen, faUserAlt } from '@fortawesome/free-solid-svg-icons'
 
 const initialize = string => {
   if (!string) return
@@ -47,7 +47,7 @@ function Profile() {
   }, [deletedKanbanId])
 
   return (
-    <>
+    <div className="profile-section">
       <div className="profile-header">
         <div className="avatar-field">
           <div className='avatar-container'>
@@ -89,13 +89,27 @@ function Profile() {
                 <FontAwesomeIcon className="profile-icon" icon={faPen} />
               </div>
             </Link>
-            
           </span>
         </div>
       </nav>
       <div className="profile-kanbans">
+        <div className="create-new-board-container">
+          {!newKanban && (
+            <div className="create-new-board-card">
+              <div onClick={handleClick} className="kanban-background">
+                <div className="create-new"> Create New Board</div>
+              </div>
+            </div>
+            
+          )}
+          {newKanban && (
+            <NewKanbanModal handleClick={handleClick} />
+          )}
+          <hr className="divider" />
+        </div>
         <div className="kanban-header">
-          <h1 className="title is-1">Kanbans</h1>
+          <FontAwesomeIcon className="icon is-medium column-icon" icon={faUserAlt} />
+          <h1 className="title">Personal Kanbans</h1>
         </div>
         <div className="kanban-container">
           {profile.kanbansOwnerOf ?
@@ -103,7 +117,6 @@ function Profile() {
               {profile.kanbansOwnerOf.map(kanban => (
                 <div key={kanban.id} className="kanban-card">
                   <div className={`kanban-background kanban-background-${kanban.background}`}>
-                    <img className={`kanban-background-${kanban.background}`} />
                     <Link  to={`/kanbans/${kanban.id}`}>
                       <div className="card-header-title">
                         {kanban.name}
@@ -120,25 +133,10 @@ function Profile() {
             </>
             :
             <div>🥴</div>
-          }
-          
-
-          {!newKanban && (
-            <div className="kanban-card">
-              <div onClick={handleClick} className="kanban-background">
-                <img src="https://media.istockphoto.com/photos/blank-warm-white-plain-background-picture-id1059059678?k=6&m=1059059678&s=612x612&w=0&h=AzFHa_kaPH9SPtgZrUWiJsv7P3WyyXrSH0C_PBnUZ2c=" />
-                <div className="create-new"> Create New Board</div>
-              </div>
-            </div>
-            
-          )}
-          {newKanban && (
-            <NewKanbanModal handleClick={handleClick} />
-          )}
-          
+          }        
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

@@ -44,19 +44,23 @@ function NewKanbanModal({ handleClick }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className={`form column-form add-list column is-narrow kanban-background-${formdata.background}`}>
-        <div>
-          <input
-            className="input"
-            onChange={handleChange}
-            placeholder="Enter List Title ..."
-            value={formdata.name}
-            name='name'
-          />
-        </div>
-        <div className="field">
-          <label className="label">Pick a background!</label>
-          <div className="control-background">
+      <form onSubmit={handleSubmit} className="create-new-kanban-form">
+        <div className="background-with-options-container">
+          <div className={`search-new-kanban kanban-background-${formdata.background}`}>
+            <div className="input-deleteButton-container">
+              <input
+                className="input create-new-kanban-input"
+                onChange={handleChange}
+                placeholder="Add Kanban Title"
+                value={formdata.name}
+                name='name'
+              />  
+              <button onClick={handleClick} className="delete is-medium"></button>
+            </div>
+            
+            <label className="create-new-kanban-label">Constanza Kanban</label>
+          </div>
+          <div className="control-background-options">
             <div className="background-option kanban-background-0">
               <input
                 type="radio"
@@ -66,7 +70,7 @@ function NewKanbanModal({ handleClick }) {
                 checked={formdata.background === '0'}
                 className="background-0" 
               />
-              <label className="radio green">
+              <label>
               </label>
             </div>
             <div className="background-option kanban-background-1">
@@ -78,7 +82,7 @@ function NewKanbanModal({ handleClick }) {
                 checked={formdata.background === '1'}
                 className="background-1" 
               />
-              <label className="radio green">
+              <label>
               </label>
             </div>
             <div className="background-option kanban-background-2">
@@ -90,7 +94,7 @@ function NewKanbanModal({ handleClick }) {
                 checked={formdata.background === '2'}
                 className="background-2" 
               />
-              <label className="radio green">
+              <label>
               </label>
             </div>
             <div className="background-option kanban-background-3">
@@ -102,14 +106,13 @@ function NewKanbanModal({ handleClick }) {
                 checked={formdata.background === '3'}
                 className="background-3" 
               />
-              <label className="radio green">
+              <label>
               </label>
             </div>
           </div>
         </div>
-        <div>
-          <button className="button" >Add</button>
-          <button onClick={handleClick} className="delete is-medium"></button>
+        <div className="create-new-kanban-buttons">
+          <button className="button" >Create Kanban</button>
         </div>
       </form>
     </>
