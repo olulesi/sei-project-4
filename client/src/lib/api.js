@@ -30,11 +30,11 @@ export function editUserProfile(formdata) {
 }
 
 export function findUser(email) {
-  return axios.get(`${baseUrl}/auth/user/${email}`)
+  return axios.get(`${baseUrl}/auth/user/${email}/`)
 }
 
 // export function findUser(email) {
-//   return axios.get(`${baseUrl}/auth/user/${email}`, headers())
+//   return axios.get(`${baseUrl}/auth/user/${email}/`, headers())
 // }
 
 
@@ -61,7 +61,7 @@ export function editKanban(id, formdata) {
 // }
 
 export function deleteKanban(id) {
-  return axios.delete(`${baseUrl}/kanbans/${id}`, headers())
+  return axios.delete(`${baseUrl}/kanbans/${id}/`, headers())
 }
 
 
@@ -84,11 +84,11 @@ export function editColumn(id, formdata) {
 // }
 
 export function deleteColumn(id) {
-  return axios.delete(`${baseUrl}/columns/${id}`)
+  return axios.delete(`${baseUrl}/columns/${id}/`)
 }
 
 // export function deleteColumn(id) {
-//   return axios.delete(`${baseUrl}/columns/${id}`, headers())
+//   return axios.delete(`${baseUrl}/columns/${id}/`, headers())
 // }
 
 
@@ -103,11 +103,11 @@ export function createTicket(formdata) {
 // }
 
 export function getTicket(id) {
-  return axios.get(`${baseUrl}/tickets/${id}`)
+  return axios.get(`${baseUrl}/tickets/${id}/`)
 }
 
 // export function getTicket(id) {
-//   return axios.get(`${baseUrl}/tickets/${id}`, headers())
+//   return axios.get(`${baseUrl}/tickets/${id}/`, headers())
 // }
 
 export function editTicket(id, formdata) {

@@ -67,10 +67,14 @@ function ColumnHeader({ id, position, name, numberOfTickets, handleSubmit, handl
                     }
                   </p>
                   <div className='buttons are-small'>
-                    <button className='button popover-button is-danger' onClick={() => handleDelete(id, position)}>
+                    <button type='button' 
+                      className='button popover-button is-danger' 
+                      onClick={() => handleDelete(id, position)}>
                       Yes
                     </button>
-                    <button className='button popover-button' onClick={hidePopover}>No</button>
+                    <button type='button' 
+                      className='button popover-button' 
+                      onClick={hidePopover}>No</button>
                   </div>
                 </>
               }

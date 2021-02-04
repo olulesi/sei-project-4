@@ -356,7 +356,7 @@ function TicketShow({ formdata, setFormdata, handleChange, handleSubmit, handleD
             <>
               <p>Are you sure you want to <span>delete</span> this ticket?</p>
               <div className='buttons are-small'>
-                <button className='button is-danger' onClick={handleDelete}>Yes</button>
+                <button type='button' className='button is-danger' onClick={handleDelete}>Yes</button>
                 <button type='button' className='button' onClick={hidePopover}>No</button>
               </div>
             </>

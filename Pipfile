@@ -11,6 +11,8 @@ djangorestframework = "*"
 pyjwt = "*"
 djangorestframework-camel-case = "*"
 drf-writable-nested = "*"
+python-dotenv = "*"
+dj-database-url = "*"
 
 [dev-packages]
 

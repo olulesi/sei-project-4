@@ -4,8 +4,7 @@ import MainNav from './navBars/MainNav'
 // import Slider from 'react-slick'
 // import homePageCarousel from '../../utils/homePageCarousel'
 import { isAuthenticated, getUserId } from '../../lib/auth'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+
 
 function Home() {
 
@@ -36,7 +35,6 @@ function Home() {
             <h6 className="subtitle">Dragging you in the right direction</h6>
             <Link to={`${isLoggedIn ? `/profile/${getUserId()}` : '/login'}`} className="button is-success is-medium">
               <span>Create your Kanban </span>
-              <FontAwesomeIcon icon={faChevronRight} />
             </Link>
           </div>
         </div>
