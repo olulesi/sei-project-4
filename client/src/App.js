@@ -7,7 +7,7 @@ import Home from './components/common/Home'
 
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
-import KanbanView from './components/kanbans/KanbanView'
+import KanbanView from './components/Kanbans/KanbanView'
 
 import Profile from './components/users/Profile'
 import EditProfile from './components/users/EditProfile'

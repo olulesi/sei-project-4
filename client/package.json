@@ -23,6 +23,7 @@
     "react-beautiful-dnd": "^13.0.0",
     "react-datetime-picker": "^3.0.5",
     "react-dom": "^17.0.1",
+    "react-parallax-tilt": "^1.4.82",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-select": "^4.0.2",

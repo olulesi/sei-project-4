@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Avatar from '../common/Avatar'
 import { getUserProfile, headers, deleteKanban } from '../../lib/api'
-import NewKanbanModal from '../kanbans/NewKanbanModal'
+import NewKanbanModal from '../Kanbans/NewKanbanModal'
 import MainNav from '../common/navBars/MainNav'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

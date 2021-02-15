@@ -9701,6 +9701,11 @@ react-is@^16.13.1, react-is@^16.6.0, react-is@^16.6.3, react-is@^16.7.0, react-i
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
 
+react-parallax-tilt@^1.4.82:
+  version "1.4.82"
+  resolved "https://registry.yarnpkg.com/react-parallax-tilt/-/react-parallax-tilt-1.4.82.tgz#cfa66fc9ee0fce760e1aa8b045bdc42642923f10"
+  integrity sha512-KBN4cUZQ5d4xX0FSTIqEf1qveb+NZHZSWg9K6SSmlxtbTGicGzkSurxeTDmgGmSS2BvnHJ9HaOemDR6mQ0kVSg==
+
 react-popper@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-2.2.4.tgz#d2ad3d2474ac9f1abf93df3099d408e5aa6a2e22"
