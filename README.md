@@ -61,15 +61,18 @@ We started brain storming ideas of what kind of website we wanted to do then try
 
 As soon as we came up with eh kanban idea we then started to plan out are ER diagram thinking about the functionality we were going to include.Since we only had a week we knew we had to have a clear vision on the specific features we wanted as we wouldn’t have enough time to completely clone a trello board with all its functionality .
 
-(ER DIAGRAM)
+<img src="images/erDiagram.png">
 
 We then further planned out our idea by going on google docs and elaborating on our concept going through the functionality on specific pages. 
 
-(GOOGLE DOCS IMAGES)
+<img src="images/googleDocPlan.png">
 
 In addition we created a trello board to get accustomed to the functionality on the app as well as planning are project ourselves dividing the sections of are work with the models on the back end and hooking them up to the front end with the drag and drop functionality we had dragged them to the done section upon completing and renamed the columns once we had finished the back end to plan the styling and animations for the pages.
 
-(TRELLO IMAGES)
+<div style="display:flex">
+  <img src="images/trelloPlan.png"  height="400">
+  <img src="images/trelloPlanFirst.png" height="400">
+</div>
 
 ### Division of Work
 
@@ -150,13 +153,18 @@ class ProfileView(APIView):
 
 #### Drag and Drop Functionality
 
+<div style="display:flex">
+  <img src="images/oldDnd.png" width="300" height="300">
+  <img src="images/dndPlayground.png" height="300">
+</div>
+
 I had to do a lot of research into the different ways of applying the drag and drop functionality. I had originally wanted to use [react-dnd](https://react-dnd.github.io/react-dnd/about) dependency originally based on recommendations but after researching youtube tutorials  and further reading their documentation I realised Atlassian’s [react beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) was the best option as it is  specifically built for lists (vertical, horizontal, movement between lists, nested lists and so on)”.
 
 I then proceeded to created a separate code base in order to test the functionality of react beautiful-dnd. However I still needed to read [Jason Brown’s article](https://codedaily.io/tutorials/186/Multi-List-Drag-and-Drop-With-react-beautiful-dnd-Immer-and-useReducer) on the multi list drag and drop breaking down each function used helping mead the functionality of adding a new ticket and adding a new column.
 
-(VIDEO OF CODE BASE KANBAN)
-
 #### Profile Page
+
+<img src="images/profilePage.png">
 
 For the profile page the main challenge was creating the background option selector and hooking each option to the back end as well as the change of images at the same time.
 
@@ -269,6 +277,10 @@ On the create new board I treated it as it was a form once checked the value of 
 
 
 #### NavBar
+
+<img src="images/navBar.png">
+
+
 
 For the case of are project we had the at the top of every page component not above the switch router in the App.js file this is because are project didn’t have many pages and the nav bar on the kanban view page is completely different to the nav bar on any other page due to the features of working on a project such as adding members side bar view of the projects and the name of the project.
 
