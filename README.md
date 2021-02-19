@@ -47,6 +47,10 @@ For my fourth and final project I decided with my partner to use the drag and dr
 * Table Plus
 
 ## Demonstration of the App Flow 
+
+
+<img src="images/appFlowProject4.gif">
+
 * First displays the landing page which gives you the option to log in or register
 * The register form gives you the option to have an avatar or use your initials of your full name as the avatar as displayed as well as a shake error animation if form is invalid 
 * this then takes you to user profile page with the option to create a new board.
@@ -154,8 +158,8 @@ class ProfileView(APIView):
 #### Drag and Drop Functionality
 
 <div style="display:flex">
-  <img src="images/oldDnd.png" width="300" height="300">
-  <img src="images/dndPlayground.png" height="300">
+  <img src="images/dndPlay1.gif">
+  <img src="images/dndPlay2.gif" >
 </div>
 
 I had to do a lot of research into the different ways of applying the drag and drop functionality. I had originally wanted to use [react-dnd](https://react-dnd.github.io/react-dnd/about) dependency originally based on recommendations but after researching youtube tutorials  and further reading their documentation I realised Atlassian’s [react beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) was the best option as it is  specifically built for lists (vertical, horizontal, movement between lists, nested lists and so on)”.
