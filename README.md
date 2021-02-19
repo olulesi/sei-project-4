@@ -289,6 +289,7 @@ On the create new board I treated it as it was a form with radio options that as
 #### NavBar
 
 <img src="images/navBar.png">
+<img src="images/Screenshot 2021-02-19 at 01.44.16.png">
 
 
 For the case of are project we had the at the top of every page component not above the switch router in the App.js file this is because are project didn’t have many pages and the nav bar on the kanban view page is completely different to the nav bar on any other page due to the features of working on a project such as adding members side bar view of the projects and the name of the project.
