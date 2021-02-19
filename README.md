@@ -73,7 +73,7 @@ As soon as we came up with the kanban idea we then started to plan out are ER di
 
 We then further planned out our idea by going on google docs and elaborating on our concept going through the functionality on specific pages. 
 
-<img src="images/googleDocPlan.png">
+<img src="images/googleDocPlan.png" height="600" >
 
 In addition we created a trello board to get accustomed to the functionality of a kanban app as well as planning are project ourselves dividing the sections of are work having the models on the back end and hooking them up to the front end with the drag and drop functionality we had dragged them to the done section upon completing it and renamed the columns once we had finished the back end to plan the styling and animations for the pages.
 
