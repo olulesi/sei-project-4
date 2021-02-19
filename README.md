@@ -168,7 +168,7 @@ I then proceeded to created a separate code base in order to test the functional
 
 #### Profile Page
 
-<img src="images/profilePage.png">
+<img src="images/profilePage4p4.gif">
 
 For the profile page the main challenge was creating the background option selector and hooking each option to the back end as well as the change of images at the same time.
 
