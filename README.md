@@ -52,32 +52,19 @@ Users can add their teammates that have and accounts as well as applying deadlin
 
 
 ## Getting Started
-* ## Clone or download the repo
-* ## Install back-end dependencies:
-pipenv
-* ## Enter the project shell:
-pipenv shell
-* ## Make migrations:
-python manage.py makemigrations
-* ## Migrate:
-python manage.py migrate
-* ## Load seed data for Users:
-python manage.py loaddata jwt_auth/seeds.json
-* ## Load seed data for Kansans:
-python manage.py loaddata kanbans/seeds.json
-* ## Load seed data for columns:
-python manage.py loaddata columns/seeds.json
-* ## Load seed data for ticketss:
-python manage.py loaddata tickets/seeds.json
-* ## Load seed data for comments:
-python manage.py loaddata comments/seeds.json
-* ## Start back end server:
-python manage.py runserver
-* ## Install dependencies in the client folder:
-cd client && yarn
-* ## Start the server (remaining in client folder):
-yarn start
-
+* Clone or download the repo
+* Install back-end dependencies: `pipenv`
+* Enter the project shell: `pipenv shell`
+* Make migrations: `python manage.py makemigrations`
+* Migrate: `python manage.py migrate`
+* Load seed data for Users: `python manage.py loaddata jwt_auth/seeds.json`
+* Load seed data for Kansans: `python manage.py loaddata kanbans/seeds.json`
+* Load seed data for columns: `python manage.py loaddata columns/seeds.json`
+* Load seed data for tickets: python `manage.py loaddata tickets/seeds.json`
+* Load seed data for comments: `python manage.py loaddata comments/seeds.json`
+* Start back end server: `python manage.py runserver`
+* Install dependencies in the client folder: `cd client && yarn`
+* Start the server (remaining in client folder): `yarn start`
 
 ## Demonstration of the App Flow 
 
