@@ -292,7 +292,7 @@ On the create new board I treated it as it was a form with radio options that as
 <img src="images/Screenshot 2021-02-19 at 01.44.16.png">
 
 
-For the case of are project we had the at the top of every page component not above the switch router in the App.js file this is because are project didn’t have many pages and the nav bar on the kanban view page is completely different to the nav bar on any other page due to the features of working on a project such as adding members side bar view of the projects and the name of the project.
+For the case of are project we had the NavBar at the top of every page component not above the switch router in the App.js file. This is because the nav bar on the kanban view page is completely different to the nav bar on any other page due to the features of working on a project such as adding members search bar, project name and project members.
 
 ```
  return (
@@ -313,7 +313,7 @@ For the case of are project we had the at the top of every page component not ab
         <div className="profile-header"
 ```
 
- For this reason I made 2 nav bar files one for the kanban view page and one for the rest. I then passed a prop on the main  navbar assigning the prop page a name of each page on this project in order for each page to have its specific nav bar icons as well as the nav bar icons when logged in not I also used a multi case ternary for be conditions on the component.
+For this reason I made 2 nav bar files. One for the kanban view page and the for the rest of the app. I then passed a prop on the main navbar file assigning the prop page a name of each page on this project in order for each page to have its specific nav bar icons as well as the nav bar icons when logged in not I also used a multi case ternary for be conditions on the component.
 
 ```
  return (
@@ -442,7 +442,7 @@ For the case of are project we had the at the top of every page component not ab
 
 Regarding the styling of the app [Bulma CSS frame work](https://bulma.io/) was used mainly as well as it’s [extensions](https://bulma.io/extensions/)
 
-Regarding the animations I used framer motion for the slide in on the kanban view. 
+Regarding the animations I used framer motion for the slide in on the kanban view and I also used key frame animations for the transitions into each page as well.
 
 ```
  <motion.div 
@@ -453,7 +453,6 @@ Regarding the animations I used framer motion for the slide in on the kanban vie
 
 ```
 
-I also used key frame animations for the transitions into each page as well.
 
 ```
 @keyframes fade-in {
@@ -506,21 +505,22 @@ The deployment process was a challenge configuring Django for [Heroku](https://d
 
 ## Challenges
 * *Team Git*: dealing with the conflicts when merging into the development branch was definitely a challenge that took time solve however with consistent communication Isaac and I were able to make sure no work was lost.
-* *Drag and Drop*: understanding the react beautiful dnd took time to get accustomed to in order to apply it to the project’s functionality requirement but thanks to using multiple resourcing it gave a solid understanding of applying it to this projects and future ones if needed.
+* *Drag and Drop*: understanding the react beautiful dnd took time to get accustomed to in order to apply it to the project’s functionality requirement but thanks to using multiple resourcing it gave a solid understanding of applying it to this project and future ones if needed.
 * *Time Frame*: working in the time frame with all the functionality provided on costanza took long days of consistentcy, being able to work with Isaac was extra helpful with his work ethic.
-* *Deployment*: solving the bugs post deployment.
+* *Deployment*: solving the bugs post deployment as well as configuring a database to run on a live server.
 
 ## Wins
-* *Working as a Pair*: Being able to work with a Isaac was a joy learning from him as well as rising up to his standards definitely brought the best out of me and resulted in a well done 4th project
+* *Working as a Pair*: Being able to work with a Isaac was a joy. Learning from him as well as rising up to his standards definitely brought the best out of me and resulted in a well done 4th project.
 * *Functionality of the App*: Costanza is a complete product where the application can be used for real project planning similar to Trello. Being able to add professional functionality to our website was a big win for me
 
 ## What I Learned 
 * How to build a full stack application in another way to MERN
 * Understanding of react dnd and react beautiful dnd
-* Deeper understandingof React Hooks
+* Deeper understanding of React Hooks with the navBar functionality
 
 ## Future Features
 * Drag and Drop functionality on the columns
+* Spinners on all pages
 
 
 
