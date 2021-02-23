@@ -526,7 +526,7 @@ The deployment process was a challenge configuring Django for [Heroku](https://d
 * *Deployment*: solving the bugs post-deployment as well as configuring a database to run on a live server.
 
 ## Wins
-* *Working as a Pair*: Being able to work with Isaac was a joy. Learning from him as well as rising up to his standards definitely brought the best out of me and resulted in a well done 4th project.
+* *Working as a Pair*: Being able to work with Isaac was a joy. Learning from him as well as rising up to his standards definitely brought the best out of me and resulted in a well done 4th project. The whole process required a lot of time spent working individually focusing on certain aspects of the app and reconvening at certain times of the day to update each other checking in on progress which required a lot of trust in one another. However, we always took the time to stop and help on another with any issues we had throughout the project which is a key aspect in pair programming and worked out in producing a polished product that we did in the time frame.
 * *Functionality of the App*: Costanza is a complete product where the application can be used for real project planning similar to Trello. Being able to add professional functionality to our website was a big win for me
 
 ## What I Learned 
