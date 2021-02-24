@@ -2,15 +2,15 @@
 ## Overview
 For my fourth and final project, I decided with my partner to use the drag and drop functionality on a professional level that promotes productivity and user interaction with our site [Costanza](https://kanban-costanza.herokuapp.com/).
 
-The concept is that users are able to organize their projects into different kanbans whilst tracking progress with the use of columns and tickets with a drag and drop user interaction. 
+The concept is that users can organize their projects into different kanbans whilst tracking progress with the use of columns and tickets with a drag and drop user interaction. 
 Users can add their teammates that have and accounts as well as applying deadlines, priority flags, comments, assign labels to different tickets and add their own todo list.
 
 
 ## Brief
-* *Build a full-stack application* by making your own backend and your own front-end
-* *Use a Python Django API* using Django REST Framework to serve your data from a Postgres database
-* *Consume your API with a separate front-end* built with React
-* *Be a complete product* which most likely means multiple relationships and CRUD functionality for at least a couple of models
+* *Build a full-stack application* by making your own backend and your own front-end.
+* *Use a Python Django API* using Django REST Framework to serve your data from a Postgres database.
+* *Consume your API with a separate front-end* built with React.
+* *Be a complete product* which most likely means multiple relationships and CRUD functionality for at least a couple of models.
 
 
 ## Collaborators
@@ -25,11 +25,11 @@ Users can add their teammates that have and accounts as well as applying deadlin
 * React-Router-Dom
 * Framer Motion
 * Bulma CSS Framework
-* Axios q
-*  Font Awesome 
-* react-beautiful-dnd (drag and drop)
-* react-datetime-picker
-* react-select
+* Axios 
+* Font Awesome 
+* Beautiful dnd (react-beautiful-dnd (drag and drop))
+* Date Time Picker (react-datetime-picker)
+* React Selector (react-select)
 * Django
 * Django REST framwork
 * Postgre SQL
@@ -91,7 +91,7 @@ We then further planned out our idea by going on google docs and elaborating on 
 
 <img src="images/googleDocPlan.png" height="600" >
 
-In addition, we created a Trello board to get accustomed to the functionality of a kanban app as well as planning are project ourselves dividing the sections of are work having the models on the back end and hooking them up to the front end with the drag and drop functionality we had dragged them to the done section upon completing it and renamed the columns once we had finished the back end to plan the styling and animations for the pages.
+In addition, we created a Trello board to get accustomed to the functionality of a kanban app as well as planning our project ourselves dividing the sections of our work having the models on the back end and hooking them up to the front end with the drag and drop functionality we had dragged them to the done section upon completing it and renamed the columns once we had finished the back end to plan the styling and animations for the pages.
 
 <div style="display:flex">
   <img src="images/trelloPlan.png"  height="400">
@@ -100,9 +100,9 @@ In addition, we created a Trello board to get accustomed to the functionality of
 
 ### Division of Work
 
-Since we had a project with a lot of features to implement we knew that we wouldn’t be able to work together for much of the project as we would need to work on so many features. Therefore we prioritised are functionality and divided it up based on strengths. 
+Since we had a project with a lot of features to implement we knew that we wouldn’t be able to work together for much of the project as we would need to work on so many features. Therefore we prioritised our functionality and divided it up based on strengths. 
 
-We started out with Isaac focusing on the back end setting up the models whilst I worked on using the drag and drop functionality and how we can hook it up to the backend. We then to proceed on working on different features of the board based on priority. Isaac proceeded to work on the ticket view with all its features whilst I worked on the profile page as well as the styling and animations of all the pages. However we still worked problems together as I was able to depend on his guidance with the backend set up.
+We started with Isaac focusing on the back end setting up the models whilst I worked on using the drag and drop functionality and how we can hook it up to the backend. We then to proceed on working on different features of the board based on priority. Isaac proceeded to work on the ticket view with all its features whilst I worked on the profile page as well as the styling and animations of all the pages. However, we still worked problems together as I was able to depend on his guidance with the backend set up.
 
 
 ### Back End (Kanban Model)
@@ -182,11 +182,11 @@ class ProfileView(APIView):
   <img src="images/dndPlay2.gif" >
 </div>
 
-In order to implement the drag and drop functionality enabling the features, we wanted such as adding a new ticket and column I had to create a separate code base in order to understand the documentation of react-beautiful-dnd.
+To implement the drag and drop functionality enabling the features, we wanted such as adding a new ticket and column I had to create a separate code base to understand the documentation of react-beautiful-dnd.
 
 After spending time researching the different ways of applying the drag and drop functionality. I had originally wanted to use [react-dnd](https://react-dnd.github.io/react-dnd/about) dependency originally based on recommendations but after researching youtube tutorials and further reading their documentation I realised Atlassian’s [react beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) was the best option as it is  specifically built for lists (vertical, horizontal, movement between lists, nested lists and so on)”.
 
-I then proceeded to create a separate code base in order to test the functionality of react beautiful-dnd. However, I still needed to read [Jason Brown’s article](https://codedaily.io/tutorials/186/Multi-List-Drag-and-Drop-With-react-beautiful-dnd-Immer-and-useReducer) on the multi-list drag and drop breaking down each function used helping mead the functionality of adding a new ticket and adding a new column.
+I then proceeded to create a separate code base test the functionality of react beautiful-dnd. However, I still needed to read [Jason Brown’s article](https://codedaily.io/tutorials/186/Multi-List-Drag-and-Drop-With-react-beautiful-dnd-Immer-and-useReducer) on the multi-list drag and drop breaking down each function used helping mead the functionality of adding a new ticket and adding a new column.
 
 #### Profile Page
 
@@ -194,7 +194,7 @@ I then proceeded to create a separate code base in order to test the functionali
 
 For the profile page, the main challenge was creating the background option selector and hooking each option to the back end as well as the change of images at the same time.
 
-I assigned each background option to a CSS class with a number value at the end of each. Those numbers had to match the numbers I assigned to each background on the back end in order for the values to be saved and shown on the kanban page.
+I assigned each background option to a CSS class with a number value at the end of each. Those numbers had to match the numbers I assigned to each background on the back end for the values to be saved and shown on the kanban page.
 
 ```
 // Backgrounds for profile and kanban view 
@@ -308,7 +308,7 @@ On the create new board I treated it as it was a form with radio options that as
 <img src="images/Screenshot 2021-02-19 at 01.44.16.png">
 
 
-For the case of our project, we had the NavBar at the top of every page component, not above the switch router in the App.js file. This is because the nav bar on the kanban view page is completely different to the navbar on any other page due to the features of working on a project such as adding members search bar, project name and project members.
+For the case of our project, we had the NavBar at the top of every page component, not above the switch router in the App.js file. This is because the navbar on the kanban view page is completely different to the navbar on any other page due to the features of working on a project such as adding members search bar, project name and project members.
 
 ```
  return (
@@ -520,23 +520,23 @@ Regarding the animations, I used framer motion for the slide in on the kanban vi
 The deployment process was a challenge configuring Django for [Heroku](https://dashboard.heroku.com/apps)  and fixing the bugs of the website post-deployment as certain features such as the ticket modal were not working after being deployed.
 
 ## Challenges
-* *Team Git*: dealing with the conflicts when merging into the development branch was definitely a challenge that took time to solve however with consistent communication Isaac and I were able to make sure no work was lost.
-* *Drag and Drop*: understanding the react beautiful dnd took time to get accustomed to in order to apply it to the project’s functionality requirement but thanks to using multiple resourcing it gave a solid understanding of applying it to this project and future ones if needed.
-* *Time Frame*: working in the time frame with all the functionality provided on costanza took long days of consistency, being able to work with Isaac was extra helpful with his work ethic.
+* *Team Git*: Dealing with the conflicts when merging into the development branch was a challenge that took time to solve however with consistent communication Isaac and I were able to make sure no work was lost.
+* *Drag and Drop*: Understanding the react beautiful dnd took time to get accustomed to in order to apply it to the project’s functionality requirement but thanks to using multiple resourcing it gave me a solid understanding on how to apply it to this project and future ones if needed.
+* *Time Frame*: working in the time frame with all the functionality provided on Costanza took long days of consistency, being able to work with Isaac was extra helpful with his work ethic.
 * *Deployment*: solving the bugs post-deployment as well as configuring a database to run on a live server.
 
 ## Wins
-* *Working as a Pair*: Being able to work with Isaac was a joy. Learning from him as well as rising up to his standards definitely brought the best out of me and resulted in a well done 4th project. The whole process required a lot of time spent working individually focusing on certain aspects of the app and reconvening at certain times of the day to update each other checking in on progress which required a lot of trust in one another. However, we always took the time to stop and help on another with any issues we had throughout the project which is a key aspect in pair programming and worked out in producing a polished product that we did in the time frame.
-* *Functionality of the App*: Costanza is a complete product where the application can be used for real project planning similar to Trello. Being able to add professional functionality to our website was a big win for me
+* *Working as a Pair*: Being able to work with Isaac was a joy. Learning from him as well as rising to his standards brought out the best in me and resulted in a well done 4th project. The whole process required a lot of time spent working individually focusing on certain aspects of the app and reconvening at certain times of the day to update each other checking in on progress which required a lot of trust in one another. However, we always took the time to stop and help on another with any issues we had throughout the project which is a key aspect in pair programming and worked out in producing a polished product that we did in the time frame.
+* *Functionality of the App*: Costanza is a complete product where the application can be used for real project planning similar to Trello. Being able to add professional functionality to our website was a big win for me.
 
 ## What I Learned 
-* How to build a full-stack application in another way to MERN
-* Understanding of react dnd and react beautiful dnd
-* Deeper understanding of React Hooks with the navBar functionality
+* How to build a full-stack application in another way to MERN.
+* Understanding react-dnd and react-beautiful-dnd.
+* Deeper understanding of React Hooks with the navBar functionality.
 
 ## Future Features
-* Drag and Drop functionality on the columns
-* Spinners on all pages
+* Drag and Drop functionality on the columns.
+* Spinners on all pages.
 
 
 
