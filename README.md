@@ -1,6 +1,6 @@
 # Project 4 - Costanza
 ## Overview
-For my fourth and final project, I decided with my partner to use the drag and drop functionality on a professional level that promotes productivity and user interaction with our site [Costanza](https://kanban-costanza.herokuapp.com/).
+For my fourth and final project, my partner and I decided to use the drag and drop functionality on a professional level that promotes productivity and user interaction with our site [Costanza](https://kanban-costanza.herokuapp.com/).
 
 The concept is that users can organize their projects into different kanbans whilst tracking progress with the use of columns and tickets with a drag and drop user interaction. 
 Users can add their teammates that have and accounts as well as applying deadlines, priority flags, comments, assign labels to different tickets and add their own todo list.
@@ -52,26 +52,26 @@ Users can add their teammates that have and accounts as well as applying deadlin
 
 
 ## Getting Started
-* Clone or download the repo
-* Install back-end dependencies: `pipenv`
-* Enter the project shell: `pipenv shell`
-* Make migrations: `python manage.py makemigrations`
-* Migrate: `python manage.py migrate`
-* Load seed data for Users: `python manage.py loaddata jwt_auth/seeds.json`
-* Load seed data for Kansans: `python manage.py loaddata kanbans/seeds.json`
-* Load seed data for columns: `python manage.py loaddata columns/seeds.json`
-* Load seed data for tickets: python `manage.py loaddata tickets/seeds.json`
-* Load seed data for comments: `python manage.py loaddata comments/seeds.json`
-* Start back end server: `python manage.py runserver`
-* Install dependencies in the client folder: `cd client && yarn`
-* Start the server (remaining in client folder): `yarn start`
+* Clone or download the repo.
+* Install back-end dependencies: `pipenv`.
+* Enter the project shell: `pipenv shell`.
+* Make migrations: `python manage.py makemigrations`.
+* Migrate: `python manage.py migrate`.
+* Load seed data for Users: `python manage.py loaddata jwt_auth/seeds.json`.
+* Load seed data for Kansans: `python manage.py loaddata kanbans/seeds.json`.
+* Load seed data for columns: `python manage.py loaddata columns/seeds.json`.
+* Load seed data for tickets: python `manage.py loaddata tickets/seeds.json`.
+* Load seed data for comments: `python manage.py loaddata comments/seeds.json`.
+* Start back end server: `python manage.py runserver`.
+* Install dependencies in the client folder: `cd client && yarn`.
+* Start the server (remaining in client folder): `yarn start`.
 
 ## Demonstration of the App Flow 
 
 
 <img src="images/appFlowProject4.gif">
 
-* First displays the landing page which gives you the option to log in or register
+* First displays the landing page which gives you the option to log in or register.
 
 * Upon signing in you go to the user profile page with the option to create a new board.
 * Upon clicking on the create new board they are given a form to enter the kanban title as well as selecting a background of their kanban. 
@@ -244,7 +244,7 @@ Due to the background options being represented as values on the back end I just
 
 ```
 
-On the create new board I treated it as it was a form with radio options that assigned a value to the background once checked therefore changing the background image
+On the create new board I treated it as it was a form with radio options that assigned a value to the background once checked therefore changing the background image.
 
 ```
 <div className="control-background-options">
@@ -329,7 +329,7 @@ For the case of our project, we had the NavBar at the top of every page componen
         <div className="profile-header"
 ```
 
-For this reason, I made 2 navbar files. One for the kanban view page and the other for the rest of the app. I then passed a prop on the main navbar file assigning the prop page a name of each page on this project in order for each page to have its specific nav bar icons as well as the navbar icons when logged in not I also used a multi-case ternary for being conditions on the component.
+For this reason, I made 2 navbar files. One for the kanban view page and the other for the rest of the app. I then passed a prop on the main navbar file assigning the prop page a name of each page on this project for each page to have its specific nav bar icons. I also used a ternary multi case for when the user is logged in or not as well.
 
 ```
  return (
@@ -456,7 +456,7 @@ For this reason, I made 2 navbar files. One for the kanban view page and the oth
 
 ### Styling and Animations
 
-Regarding the styling of the app [Bulma CSS frame work](https://bulma.io/) was used mainly as well as it’s [extensions](https://bulma.io/extensions/)
+Regarding the styling of the app [Bulma CSS frame work](https://bulma.io/) was used mainly as well as it’s [extensions](https://bulma.io/extensions/).
 
 Regarding the animations, I used framer motion for the slide in on the kanban view and I also used keyframe animations for the transitions into each page as well.
 
